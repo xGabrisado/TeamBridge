@@ -86,7 +86,7 @@ const ProfileForm = () => {
             Profile
           </Typography>
           <Box component="div" noValidate sx={{ mt: 3 }}>
-            <Form method="post">
+            <Form method="patch">
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={5}>
                   <TextField

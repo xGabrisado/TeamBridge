@@ -15,12 +15,14 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 export const mainListItems = (
   <>
-    <ListItemButton>
-      <ListItemIcon>
-        <HomeIcon color="secondary" />
-      </ListItemIcon>
-      <ListItemText primary="Home" sx={{ color: "secondary" }} />
-    </ListItemButton>
+    <Link to="/">
+      <ListItemButton>
+        <ListItemIcon>
+          <HomeIcon color="secondary" />
+        </ListItemIcon>
+        <ListItemText primary="Home" sx={{ color: "secondary" }} />
+      </ListItemButton>
+    </Link>
     <Link to="/profile">
       <ListItemButton>
         <ListItemIcon>
@@ -29,12 +31,14 @@ export const mainListItems = (
         <ListItemText primary="Perfil" sx={{ color: "secondary" }} />
       </ListItemButton>
     </Link>
-    <ListItemButton>
-      <ListItemIcon>
-        <BusinessIcon color="secondary" />
-      </ListItemIcon>
-      <ListItemText primary="Empresa" sx={{ color: "secondary" }} />
-    </ListItemButton>
+    <Link to="/company">
+      <ListItemButton>
+        <ListItemIcon>
+          <BusinessIcon color="secondary" />
+        </ListItemIcon>
+        <ListItemText primary="Empresa" sx={{ color: "secondary" }} />
+      </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <FormatListBulletedIcon color="secondary" />
@@ -61,7 +65,7 @@ export const secondaryListItems = (
     <ListSubheader component="div" inset sx={{ bgcolor: "primary.dark" }}>
       Autentication
     </ListSubheader>
-    <Link to="/auth">
+    <Link to="/">
       <ListItemButton>
         <ListItemIcon>
           <LoginIcon color="secondary" />
@@ -72,10 +76,12 @@ export const secondaryListItems = (
     <Form action="/logout" method="post">
       <button
         style={{
-          backgroundColor: "#DAE8FC",
+          backgroundColor: "inherit",
           border: "none",
           color: "black",
           width: "100%",
+          height: "100%",
+          padding: "0",
         }}
       >
         <ListItemButton>

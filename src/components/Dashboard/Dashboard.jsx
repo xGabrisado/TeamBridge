@@ -156,7 +156,7 @@ export default function Dashboard(props) {
             },
             objectFit: "contain",
             // paddingY: "auto",
-            overflow: "hidden",
+            overflow: "auto",
           }}
         >
           <Toolbar />

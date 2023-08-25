@@ -32,7 +32,7 @@ import { useState } from "react";
 //   );
 // }
 
-export default function SigIn() {
+export default function SignIn() {
   const navigate = useNavigate();
   const [isError, setIsError] = useState(null);
   const handleSubmit = async (event) => {
@@ -43,7 +43,7 @@ export default function SigIn() {
     //   password: data.get("password"),
     // });
     const authData = {
-      userEmail: data.get("email"),
+      userEmail: data.get("email").toLowerCase(),
       password: data.get("password"),
     };
 
@@ -62,11 +62,11 @@ export default function SigIn() {
       return;
       // throw new Error({ message: "Email/Senha inválidos" });
     }
-    console.log("response");
-    console.log(response);
+    // console.log("response");
+    // console.log(response);
 
     if (response.status === 404) {
-      setIsError({message: response.message})
+      setIsError({ message: response.message });
     }
 
     if (!response.ok) {
@@ -76,8 +76,8 @@ export default function SigIn() {
     }
 
     const resData = await response.json();
-    console.log("resData");
-    console.log(resData);
+    // console.log("resData");
+    // console.log(resData);
 
     const token = resData.token;
 

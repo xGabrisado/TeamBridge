@@ -40,51 +40,44 @@ import { useState } from "react";
 export default function SignUp() {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
     const cadastro = {
-      userEmail: data.get("email"),
+      userEmail: data.get("email").toLowerCase(),
       password: data.get("password"),
       userName: data.get("firstName"),
       userLastName: data.get("lastName"),
       userPost: data.get("cargo"),
     };
-    // console.log(cadastro.userName, cadastro.userLastName);
 
     const emailError = !cadastro.userEmail.match(RegExHelper.emailMatch);
     const passwordError = !cadastro.password.match(RegExHelper.passwordMatch);
     const nameError =
       cadastro.userName.trim().length === 0 ||
       cadastro.userLastName.trim().length === 0;
-    
-    const confirmPasswordError = cadastro.password !== data.get('confirmPassword')
 
-    // console.log("nameError");
-    // console.log(nameError);
+    const confirmPasswordError =
+      cadastro.password !== data.get("confirmPassword");
 
     if (confirmPasswordError) {
       setIsError((pastError) => {
         return {
           ...pastError,
-          confirmPassword: 'As senhas devem ser iguais'
-        }
-      })
+          confirmPassword: "As senhas devem ser iguais",
+        };
+      });
     }
 
     if (!confirmPasswordError) {
       setIsError((pastError) => {
         return {
           ...pastError,
-          confirmPassword: 'As senhas devem ser iguais'
-        }
-      })
+          confirmPassword: "As senhas devem ser iguais",
+        };
+      });
     }
 
     if (emailError) {
@@ -171,7 +164,7 @@ export default function SignUp() {
     console.log(resData);
     setIsError({ message: "Cadastrado com sucesso" });
     setIsLoading(false);
-    navigate('/auth')
+    navigate("/auth");
   };
 
   return (

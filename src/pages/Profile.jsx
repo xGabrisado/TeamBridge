@@ -4,6 +4,7 @@ import {
   getAuthenticationToken,
   getTokenId,
 } from "../helpers/functions.helper";
+import { getAuthToken } from "../utils/auth";
 
 export default function ProfilePage() {
   return <ProfileForm />;
@@ -11,9 +12,18 @@ export default function ProfilePage() {
 
 export async function loader() {
   const id = getTokenId();
+  const token = getAuthToken();
+
+  if (!token) {
+    return redirect("/");
+  }
   //   console.log(id);
 
-  const response = await fetch("http://localhost:3000/usuario/" + `${id}`);
+  const response = await fetch("http://localhost:3000/usuario/" + `${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   const resData = await response.json();
 
@@ -56,5 +66,5 @@ export async function action({ request }) {
   //   console.log("profileUpdated");
   //   console.log(profileUpdated);
 
-  return redirect("/profile");
+  return redirect("/");
 }
