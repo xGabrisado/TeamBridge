@@ -1,14 +1,26 @@
 import { Box, Button, Typography, Grid, TextField } from "@mui/material";
 import { useState } from "react";
-import { Form, Link, useActionData, useLoaderData } from "react-router-dom";
+import {
+  Form,
+  Link,
+  useActionData,
+  useLoaderData,
+  useRouteLoaderData,
+} from "react-router-dom";
 
 const Empresa = () => {
   const [isCreatingCompany, setIsCreatingCompany] = useState(false);
+  const [isEnteringCompany, setIsEnteringCompany] = useState(false);
   const loaderData = useLoaderData();
   const actionData = useActionData();
 
   const openCreateCompanyHandler = () => {
     setIsCreatingCompany((prevState) => !prevState);
+    setIsEnteringCompany(false);
+  };
+  const openEnterCompanyHandler = () => {
+    setIsEnteringCompany((prevState) => !prevState);
+    setIsCreatingCompany(false);
   };
   return (
     <>
@@ -46,15 +58,24 @@ const Empresa = () => {
             sx={{
               // bgcolor: "red"
               display: "flex",
-              justifyContent: "flex-start",
+              justifyContent: "space-between",
             }}
           >
             <Button
               variant="contained"
               type="button"
               onClick={openCreateCompanyHandler}
+              color="secondary"
             >
               Criar Empresa
+            </Button>
+            <Button
+              variant="contained"
+              type="button"
+              onClick={openEnterCompanyHandler}
+              sx={{ justifySelf: "flex-end" }}
+            >
+              Entrar em uma empresa
             </Button>
           </Box>
         )}
@@ -135,12 +156,56 @@ const Empresa = () => {
             </Form>
           </Box>
         )}
+        {!loaderData && isEnteringCompany && (
+          <Box component="div" noValidate sx={{ mt: 3 }}>
+            <Form method="post" action="/enterCompany">
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12}>
+                  <Typography>
+                    Para conseguir um token peça ao gerente da empresa
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="token"
+                    label="Token"
+                    name="companyToken"
+                    autoComplete="CompanyToken"
+                    // defaultValue={email}
+                    // disabled={!isEditing}
+                    color="secondary"
+                  />
+                </Grid>
+              </Grid>
+              <Box
+                component="div"
+                sx={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Enviar
+                </Button>
+              </Box>
+            </Form>
+          </Box>
+        )}
         {loaderData && (
           <Box
             component="div"
             noValidate
-            sx={{ display: "flex", justifyContent: "flex-end" }}
+            sx={{ display: "flex", justifyContent: "space-between" }}
           >
+            <Link to="/createToken">
+              <Button variant="contained">
+                Criar Chave para um colaborador
+              </Button>
+            </Link>
             <Link to={`?mode=delete`}>
               <Button variant="contained" color="error">
                 Sair da empresa

@@ -82,7 +82,7 @@ export async function loader({ request }) {
     }
 
     const responseEmpresa = await response.json();
-    console.log(responseEmpresa);
+    // console.log(responseEmpresa);
 
     return responseEmpresa;
     // const empresa = {
@@ -105,7 +105,7 @@ export async function action({ request }) {
     nomeFantasia: data.get("nomeFantasia"),
     cpfCnpj: data.get("cpfCnpj"),
   };
-  console.log(creatingEmpresa);
+  // console.log(creatingEmpresa);
 
   const response = await fetch("http://localhost:3000/empresa", {
     method: "POST",
@@ -116,10 +116,10 @@ export async function action({ request }) {
     body: JSON.stringify(creatingEmpresa),
   });
 
-  console.log("response.status");
-  console.log(response.status);
-  console.log("response.message");
-  console.log(response.message);
+  // console.log("response.status");
+  // console.log(response.status);
+  // console.log("response.message");
+  // console.log(response.message);
 
   if (response.status === 409) {
     return response;

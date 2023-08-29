@@ -13,6 +13,11 @@ import CompanyPage, {
   loader as companyLoader,
   action as creatingCompanyAction,
 } from "./pages/Company";
+import { action as enterCompanyAction } from "./pages/enterCompany";
+import CreateCompanyToken, {
+  loader as createCompanyTokenLoader,
+} from "./pages/createCompanyToken";
+import ProjectsPage from "./pages/Projects";
 
 const router = createBrowserRouter([
   {
@@ -37,10 +42,20 @@ const router = createBrowserRouter([
         loader: companyLoader,
         action: creatingCompanyAction,
       },
-      // {
-      //   path: "auth",
-      //   element: <AuthenticationPage />,
-      // },
+      {
+        path: "enterCompany",
+        action: enterCompanyAction,
+      },
+      {
+        path: "createToken",
+        loader: createCompanyTokenLoader,
+        element: <CreateCompanyToken />,
+        id: "CompanyToken",
+      },
+      {
+        path: "projects",
+        element: <ProjectsPage />,
+      },
       {
         path: "signup",
         element: <UserSignUpPage />,

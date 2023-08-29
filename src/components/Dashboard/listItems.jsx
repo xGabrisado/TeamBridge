@@ -39,12 +39,14 @@ export const mainListItems = (
         <ListItemText primary="Empresa" sx={{ color: "secondary" }} />
       </ListItemButton>
     </Link>
-    <ListItemButton>
-      <ListItemIcon>
-        <FormatListBulletedIcon color="secondary" />
-      </ListItemIcon>
-      <ListItemText primary="Projetos" sx={{ color: "secondary" }} />
-    </ListItemButton>
+    <Link to="/projects">
+      <ListItemButton>
+        <ListItemIcon>
+          <FormatListBulletedIcon color="secondary" />
+        </ListItemIcon>
+        <ListItemText primary="Projetos" sx={{ color: "secondary" }} />
+      </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <TaskIcon color="secondary" />
