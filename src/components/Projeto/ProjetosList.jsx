@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 // import InboxIcon from "@mui/icons-material/Inbox";
 
 export default function ProjetosList(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <nav aria-label="main mailbox folders">
       <List>

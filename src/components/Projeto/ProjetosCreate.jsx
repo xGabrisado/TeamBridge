@@ -66,6 +66,7 @@ export default function ProjetosCreate() {
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <DemoItem>
                   <DateField
+                    format="DD/MM/YYYY"
                     color="secondary"
                     label="Prazo de entrega"
                     name="projectDeadLine"
