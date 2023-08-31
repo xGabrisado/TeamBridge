@@ -20,6 +20,7 @@ import CreateCompanyToken, {
 import ProjectsPage from "./pages/Projects";
 import { loader as projectsLoader } from "./pages/Projects";
 import ProjectsCreatePage from "./pages/ProjectsCreate";
+import { action as createProjectsAction } from "./pages/ProjectsCreate";
 
 const router = createBrowserRouter([
   {
@@ -63,9 +64,9 @@ const router = createBrowserRouter([
             loader: projectsLoader,
           },
           {
-            path: "/addProject",
+            path: "addProject",
             element: <ProjectsCreatePage />,
-            action: "",
+            action: createProjectsAction,
           },
         ],
       },

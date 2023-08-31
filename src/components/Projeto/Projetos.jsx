@@ -21,7 +21,7 @@ export default function Projetos() {
           mb: "1rem",
         }}
       >
-        <Button variant="contained" component={Link} to>
+        <Button variant="contained" component={Link} to="addProject">
           Criar Projeto <AddIcon />
         </Button>
       </Box>

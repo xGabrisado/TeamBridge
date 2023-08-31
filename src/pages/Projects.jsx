@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-import Projetos from "../components/Projetos";
+import Projetos from "../components/Projeto/Projetos";
 import { getAuthToken } from "../utils/auth";
 
 export default function ProjectsPage() {
