@@ -18,6 +18,8 @@ import CreateCompanyToken, {
   loader as createCompanyTokenLoader,
 } from "./pages/createCompanyToken";
 import ProjectsPage from "./pages/Projects";
+import { loader as projectsLoader } from "./pages/Projects";
+import ProjectsCreatePage from "./pages/ProjectsCreate";
 
 const router = createBrowserRouter([
   {
@@ -54,7 +56,18 @@ const router = createBrowserRouter([
       },
       {
         path: "projects",
-        element: <ProjectsPage />,
+        children: [
+          {
+            index: true,
+            element: <ProjectsPage />,
+            loader: projectsLoader,
+          },
+          {
+            path: "/addProject",
+            element: <ProjectsCreatePage />,
+            action: "",
+          },
+        ],
       },
       {
         path: "signup",

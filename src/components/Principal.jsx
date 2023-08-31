@@ -84,7 +84,7 @@ const Principal = () => {
           >
             <Button
               component={Link}
-              to="/"
+              to="/projects"
               color="primary"
               variant="contained"
               sx={{ width: "45%", fontSize: "large", color: "#036897" }}
