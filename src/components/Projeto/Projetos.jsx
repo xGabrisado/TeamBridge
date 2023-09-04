@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { Link, useLoaderData } from "react-router-dom";
 import ProjetosList from "./ProjetosList";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 export default function Projetos() {
@@ -21,11 +21,38 @@ export default function Projetos() {
           mb: "1rem",
         }}
       >
-        <Button variant="contained" component={Link} to="addProject">
-          Criar Projeto <AddIcon />
-        </Button>
+        {projectsData.statusCode !== 405 && (
+          <Button variant="contained" component={Link} to="addProject">
+            Criar Projeto <AddIcon />
+          </Button>
+        )}
       </Box>
-      {projectsData && (
+      {projectsData.statusCode === 405 && (
+        <Box
+          sx={{
+            width: "100%",
+            bgcolor: "background.paper",
+            borderRadius: "10px",
+          }}
+        >
+          <Typography
+            component="h1"
+            variant="h6"
+            sx={{
+              mb: "1em",
+              bgcolor: "#D1EDF1",
+              padding: "1rem",
+              borderRadius: "10px",
+              border: "solid 1px",
+              width: "100%",
+            }}
+          >
+            Aqui aparecem os projetos de sua empresa atual, entre em uma para
+            criar novos.
+          </Typography>
+        </Box>
+      )}
+      {projectsData && projectsData.statusCode !== 405 && (
         <Box
           sx={{
             width: "100%",

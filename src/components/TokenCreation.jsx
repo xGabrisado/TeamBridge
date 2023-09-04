@@ -28,7 +28,7 @@ export default function TokenCreation() {
               width: "100%",
             }}
           >
-            Copie o Token abaixo e passe para o colaborador.
+            Copie a chave de acesso abaixo e passe para o colaborador.
           </Typography>
           <Typography
             component="textarea"

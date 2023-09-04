@@ -156,7 +156,8 @@ const Empresa = () => {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12}>
                   <Typography>
-                    Para conseguir um token peça ao gerente da empresa
+                    Para conseguir uma chave de acesso peça ao gerente da
+                    empresa
                   </Typography>
                 </Grid>
                 <Grid item xs={12} sm={12}>
@@ -164,7 +165,7 @@ const Empresa = () => {
                     required
                     fullWidth
                     id="token"
-                    label="Token"
+                    label="Chave de acesso"
                     name="companyToken"
                     autoComplete="CompanyToken"
                     // defaultValue={email}
