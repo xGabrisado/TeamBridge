@@ -22,7 +22,8 @@ const ProfileForm = () => {
 
   const { nome, sobrenome, cargo, permission, email } = useLoaderData();
 
-  const role = permission === "c" ? "Comum" : "Admin";
+  const role =
+    permission === "a" ? "Admin" : permission === "g" ? "Gerente" : "Comum";
 
   const toggleEditHandler = () => {
     setIsEditing((prevstate) => !prevstate);

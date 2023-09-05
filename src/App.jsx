@@ -26,6 +26,7 @@ import { loader as projectsProjectLoader } from "./pages/ProjectsProject";
 import ProjectsAddUserPage, {
   action as projectAddUserAction,
 } from "./pages/ProjectsAddUser";
+import { action as projectRemoveAction } from "./pages/ProjectsRemoveUser";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
             path: ":id/addUserToProject",
             element: <ProjectsAddUserPage />,
             action: projectAddUserAction,
+          },
+          {
+            path: "removeUserFromProject",
+            action: projectRemoveAction,
           },
         ],
       },
