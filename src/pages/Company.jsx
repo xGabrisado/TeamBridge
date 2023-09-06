@@ -17,7 +17,7 @@ export async function loader({ request }) {
     return redirect("/");
   }
 
-  if (mode === "delete") {
+  if (mode === "exit") {
     const response = await fetch(
       "http://localhost:3000/usuario/saindoEmpresa",
       {
@@ -31,6 +31,28 @@ export async function loader({ request }) {
         }),
       }
     );
+
+    if (!response.ok) {
+      throw json(
+        { message: "Não foi possível enviar para o banco" },
+        { status: 500 }
+      );
+    }
+
+    // if (mode === "delete") {
+    //   const response = await fetch(
+    //     "http://localhost:3000/usuario/saindoEmpresa",
+    //     {
+    //       method: "PATCH",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //       body: JSON.stringify({
+    //         userId: id,
+    //       }),
+    //     }
+    //   );
 
     if (!response.ok) {
       throw json(

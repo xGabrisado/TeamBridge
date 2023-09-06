@@ -47,12 +47,14 @@ export const mainListItems = (
         <ListItemText primary="Projetos" sx={{ color: "secondary" }} />
       </ListItemButton>
     </Link>
-    <ListItemButton>
-      <ListItemIcon>
-        <TaskIcon color="secondary" />
-      </ListItemIcon>
-      <ListItemText primary="Tarefas" sx={{ color: "secondary" }} />
-    </ListItemButton>
+    <Link to="/tasks">
+      <ListItemButton>
+        <ListItemIcon>
+          <TaskIcon color="secondary" />
+        </ListItemIcon>
+        <ListItemText primary="Tarefas" sx={{ color: "secondary" }} />
+      </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <NotificationsIcon color="secondary" />

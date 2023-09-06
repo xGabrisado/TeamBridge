@@ -3,11 +3,15 @@ import { Link, useLoaderData } from "react-router-dom";
 import ProjetosList from "./ProjetosList";
 import { Button, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { useSelector } from "react-redux";
 
 export default function Projetos() {
   const projectsData = useLoaderData();
+  const payload = useSelector((state) => state.token);
+  const permission = payload.permission;
   // console.log(projectsData);
 
+  const isAuthorized = permission === "g" || permission === "a";
   return (
     <Box>
       <Box
@@ -21,7 +25,7 @@ export default function Projetos() {
           mb: "1rem",
         }}
       >
-        {projectsData.statusCode !== 405 && (
+        {projectsData.statusCode !== 405 && isAuthorized && (
           <Button variant="contained" component={Link} to="addProject">
             Criar Projeto <AddIcon />
           </Button>
@@ -58,6 +62,7 @@ export default function Projetos() {
             width: "100%",
             bgcolor: "background.paper",
             borderRadius: "10px",
+            p: "0 20px",
           }}
         >
           {projectsData.map((projeto) => (
@@ -65,6 +70,7 @@ export default function Projetos() {
               key={projeto.id}
               id={projeto.id}
               name={projeto.projectName}
+              disabledBin={isAuthorized}
             />
           ))}
         </Box>

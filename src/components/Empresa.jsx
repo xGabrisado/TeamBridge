@@ -1,12 +1,23 @@
 import { Box, Button, Typography, Grid, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Link, useActionData, useLoaderData } from "react-router-dom";
+import { getAuthToken } from "../utils/auth";
+import {
+  getTokenEmail,
+  getTokenId,
+  getTokenPermission,
+} from "../helpers/functions.helper";
+import { tokenActions } from "../store/tokenPayload";
 
 const Empresa = () => {
   const [isCreatingCompany, setIsCreatingCompany] = useState(false);
   const [isEnteringCompany, setIsEnteringCompany] = useState(false);
   const loaderData = useLoaderData();
   const actionData = useActionData();
+
+  const payload = useSelector((state) => state.token);
+  const permission = payload.permission;
 
   const openCreateCompanyHandler = () => {
     setIsCreatingCompany((prevState) => !prevState);
@@ -16,6 +27,8 @@ const Empresa = () => {
     setIsEnteringCompany((prevState) => !prevState);
     setIsCreatingCompany(false);
   };
+
+  const isAutorized = permission === "g" || permission === "a";
   return (
     <>
       <Box>
@@ -191,22 +204,52 @@ const Empresa = () => {
           </Box>
         )}
         {loaderData && (
-          <Box
-            component="div"
-            noValidate
-            sx={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <Link to="/createToken">
-              <Button variant="contained">
-                Criar Chave para um colaborador
-              </Button>
-            </Link>
-            <Link to={`?mode=delete`}>
-              <Button variant="contained" color="error">
-                Sair da empresa
-              </Button>
-            </Link>
-          </Box>
+          <>
+            <Box
+              component="div"
+              noValidate
+              sx={{ display: "flex", justifyContent: "space-between" }}
+            >
+              {isAutorized && (
+                <Link to="/createToken">
+                  <Button variant="contained">
+                    Criar Chave para um colaborador
+                  </Button>
+                </Link>
+              )}
+              <Link to={`?mode=exit`}>
+                <Button
+                  variant="contained"
+                  sx={{ bgcolor: "#ab2121", color: "white" }}
+                >
+                  Sair da empresa
+                </Button>
+              </Link>
+            </Box>
+            {isAutorized && (
+              <Box
+                component="div"
+                noValidate
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  mt: "1rem",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  component={Link}
+                  to={`?mode=delete`}
+                  color="error"
+                  sx={{
+                    ":hover": { color: "black" },
+                  }}
+                >
+                  Deletar da empresa
+                </Button>
+              </Box>
+            )}
+          </>
         )}
       </Box>
     </>

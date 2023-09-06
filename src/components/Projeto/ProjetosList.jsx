@@ -19,11 +19,13 @@ export default function ProjetosList(props) {
             <ListItemButton>
               <ListItemText primary={props.name} />
             </ListItemButton>
-            <IconButton color="inherit">
-              <Badge color="secondary">
-                <DeleteIcon />
-              </Badge>
-            </IconButton>
+            {props.disabledBin && (
+              <IconButton color="inherit">
+                <Badge color="secondary">
+                  <DeleteIcon />
+                </Badge>
+              </IconButton>
+            )}
           </ListItem>
         </Link>
       </List>

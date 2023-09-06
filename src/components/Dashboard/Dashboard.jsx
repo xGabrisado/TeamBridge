@@ -18,6 +18,14 @@ import { mainListItems, secondaryListItems } from "./listItems";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import { Grid } from "@mui/material";
+import {
+  getTokenEmail,
+  getTokenId,
+  getTokenPermission,
+} from "../../helpers/functions.helper";
+import { useDispatch } from "react-redux";
+import { tokenActions } from "../../store/tokenPayload";
+import { getAuthToken } from "../../utils/auth";
 
 const drawerWidth = 240;
 
@@ -69,6 +77,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Dashboard(props) {
   const [open, setOpen] = React.useState(true);
+
   const toggleDrawer = () => {
     setOpen(!open);
   };

@@ -1,7 +1,39 @@
 import { Box, Button, Container, Typography } from "@mui/material";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Form, Link } from "react-router-dom";
+import { getAuthToken, getTokenDuration } from "../utils/auth";
+import {
+  getTokenEmail,
+  getTokenId,
+  getTokenPermission,
+} from "../helpers/functions.helper";
+import { tokenActions } from "../store/tokenPayload";
 
 const Principal = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = getAuthToken();
+
+    if (!token) {
+      return;
+    }
+    const id = getTokenId();
+    const userEmail = getTokenEmail();
+    const userPermission = getTokenPermission();
+
+    console.log("userEmail useEffect");
+    console.log(userEmail);
+
+    dispatch(
+      tokenActions.addTokenPayload({
+        id,
+        userEmail,
+        userPermission,
+      })
+    );
+  }, [dispatch]);
   return (
     <>
       <Box>

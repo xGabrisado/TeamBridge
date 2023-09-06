@@ -27,6 +27,7 @@ import ProjectsAddUserPage, {
   action as projectAddUserAction,
 } from "./pages/ProjectsAddUser";
 import { action as projectRemoveAction } from "./pages/ProjectsRemoveUser";
+import TasksPage from "./pages/Tasks";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
             action: projectRemoveAction,
           },
         ],
+      },
+      {
+        path: "tasks",
+        element: <TasksPage />,
       },
       {
         path: "signup",
