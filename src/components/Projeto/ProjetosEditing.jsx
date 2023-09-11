@@ -5,20 +5,23 @@ import {
   DateField,
 } from "@mui/x-date-pickers";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { Form } from "react-router-dom";
-import moment from "moment/moment";
-// import dayjs from "dayjs";
+import { Form, useLoaderData } from "react-router-dom";
+import dayjs from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { Link } from "react-router-dom";
 
-// let defaultValue = dayjs();
-// defaultValue = defaultValue.format("DD/MM/YYYY");
-const defaultValue = moment();
+export default function ProjetosEditing() {
+  const loaderData = useLoaderData();
 
-export default function ProjetosCreate() {
+  const projectDeadline = dayjs(`${loaderData.projectDeadline}`);
+  let projectBeginning = null;
+  if (loaderData.projectBeginning) {
+    projectBeginning = dayjs(`${loaderData.projectBeginning}`);
+  }
   return (
     <Box>
       <Box component="div" sx={{ mt: "4rem" }}>
-        <Form method="post">
+        <Form method="patch">
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
               <TextField
@@ -30,6 +33,7 @@ export default function ProjetosCreate() {
                 autoComplete="project-Name"
                 autoFocus
                 color="secondary"
+                defaultValue={loaderData.projectName}
               />
             </Grid>
             <Grid item xs={12} sm={12}>
@@ -41,10 +45,11 @@ export default function ProjetosCreate() {
                 id="projectDescription"
                 label="Descrição do Projeto"
                 color="secondary"
+                defaultValue={loaderData.projectDescription}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <LocalizationProvider dateAdapter={AdapterMoment}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoItem>
                   <DateField
                     sx={{ margin: "10px" }}
@@ -52,20 +57,20 @@ export default function ProjetosCreate() {
                     color="secondary"
                     label="Data de início"
                     name="projectBeginning"
-                    defaultValue={defaultValue}
+                    defaultValue={projectBeginning}
                   />
                 </DemoItem>
               </LocalizationProvider>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <LocalizationProvider dateAdapter={AdapterMoment}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoItem>
                   <DateField
                     format="DD/MM/YYYY"
                     color="secondary"
                     label="Prazo de entrega"
                     name="projectDeadLine"
-                    defaultValue={defaultValue}
+                    defaultValue={projectDeadline}
                   />
                 </DemoItem>
               </LocalizationProvider>
@@ -81,7 +86,12 @@ export default function ProjetosCreate() {
               color="secondary"
               sx={{ mt: 3, mb: 2 }}
             >
-              Criar
+              Salvar
+            </Button>
+          </Box>
+          <Box component="div">
+            <Button variant="contained" component={Link} to="..">
+              Voltar
             </Button>
           </Box>
         </Form>

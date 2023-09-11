@@ -28,6 +28,10 @@ import ProjectsAddUserPage, {
 } from "./pages/ProjectsAddUser";
 import { action as projectRemoveAction } from "./pages/ProjectsRemoveUser";
 import TasksPage from "./pages/Tasks";
+import ProjectsEditingPage, {
+  loader as editingProjectLoader,
+} from "./pages/ProjectsEditing";
+import { action as editingProjectAction } from "./pages/ProjectsEditing";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +89,12 @@ const router = createBrowserRouter([
             path: ":id/addUserToProject",
             element: <ProjectsAddUserPage />,
             action: projectAddUserAction,
+          },
+          {
+            path: ":id/editing",
+            element: <ProjectsEditingPage />,
+            loader: editingProjectLoader,
+            action: editingProjectAction,
           },
           {
             path: "removeUserFromProject",

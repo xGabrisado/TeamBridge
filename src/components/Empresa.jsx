@@ -245,7 +245,7 @@ const Empresa = () => {
                     ":hover": { color: "black" },
                   }}
                 >
-                  Deletar da empresa
+                  Deletar a empresa
                 </Button>
               </Box>
             )}

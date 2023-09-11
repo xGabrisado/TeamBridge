@@ -11,14 +11,22 @@ import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 
 export default function ProjetosProjeto() {
   const loaderData = useLoaderData();
-  const [isEditing, setIsEditing] = useState(false);
+
+  // console.log("loaderData.projectBeginning");
+  // console.log(loaderData.projectBeginning);
 
   const createdAt = dayjs(`${loaderData.created_At}`);
   const projectDeadline = dayjs(`${loaderData.projectDeadline}`);
-  console.log("createdAt");
-  console.log(createdAt);
-  console.log("projectDeadline");
-  console.log(projectDeadline);
+  let projectBeginning = null;
+  if (loaderData.projectBeginning) {
+    projectBeginning = dayjs(`${loaderData.projectBeginning}`);
+  }
+  // console.log("createdAt");
+  // console.log(createdAt);
+  // console.log("projectDeadline");
+  // console.log(projectDeadline);
+  // console.log("projectBeginning");
+  // console.log(projectBeginning);
   // console.log("loaderData");
   // console.log(loaderData);
 
@@ -82,6 +90,20 @@ export default function ProjetosProjeto() {
               />
             </DemoItem>
           </LocalizationProvider>
+          {projectBeginning && (
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoItem>
+                <DateField
+                  format="DD/MM/YYYY"
+                  color="secondary"
+                  label="Data de Início"
+                  name="projectBeginning"
+                  defaultValue={projectBeginning}
+                  disabled
+                />
+              </DemoItem>
+            </LocalizationProvider>
+          )}
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoItem>
               <DateField
@@ -96,6 +118,27 @@ export default function ProjetosProjeto() {
           </LocalizationProvider>
         </Box>
 
+        <Box
+          component="div"
+          sx={{ m: "10px 0", display: "flex", justifyContent: "space-between" }}
+        >
+          <Button
+            variant="contained"
+            color="secondary"
+            component={Link}
+            to="editing"
+          >
+            Editar
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            component={Link}
+            to="editing/?done=true"
+          >
+            Concluir
+          </Button>
+        </Box>
         <Box component="div">
           <Button variant="contained" component={Link} to="..">
             Voltar

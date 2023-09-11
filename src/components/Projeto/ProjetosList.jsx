@@ -14,20 +14,22 @@ export default function ProjetosList(props) {
   return (
     <nav aria-label="main mailbox folders">
       <List>
-        <Link to={`${props.id}`}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText primary={props.name} />
-            </ListItemButton>
-            {props.disabledBin && (
-              <IconButton color="inherit">
-                <Badge color="secondary">
-                  <DeleteIcon />
-                </Badge>
-              </IconButton>
-            )}
-          </ListItem>
-        </Link>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to={`${props.id}`}>
+            <ListItemText primary={props.name} />
+          </ListItemButton>
+          {props.disabledBin && (
+            <IconButton
+              color="inherit"
+              component={Link}
+              to={`${props.id}?mode=delete`}
+            >
+              <Badge color="secondary">
+                <DeleteIcon />
+              </Badge>
+            </IconButton>
+          )}
+        </ListItem>
       </List>
     </nav>
   );
