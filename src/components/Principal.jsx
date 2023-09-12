@@ -125,7 +125,7 @@ const Principal = () => {
             </Button>
             <Button
               component={Link}
-              to="/"
+              to="/tasks"
               color="primary"
               variant="contained"
               sx={{ width: "45%", fontSize: "large", color: "#036897" }}

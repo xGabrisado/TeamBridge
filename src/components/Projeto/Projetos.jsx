@@ -12,6 +12,7 @@ export default function Projetos() {
   // console.log(projectsData);
 
   const isAuthorized = permission === "g" || permission === "a";
+  const isNotDone = projectsData.filter((projeto) => !projeto.isDone);
   return (
     <Box>
       <Box
@@ -65,7 +66,7 @@ export default function Projetos() {
             p: "0 20px",
           }}
         >
-          {projectsData.map((projeto) => (
+          {isNotDone.map((projeto) => (
             <ProjetosList
               key={projeto.id}
               id={projeto.id}

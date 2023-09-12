@@ -13,6 +13,44 @@ export async function loader({ request, params }) {
     return redirect("/");
   }
 
+  const searchParams = new URL(request.url).searchParams;
+  const done = searchParams.get("done") || null;
+
+  if (done === "true") {
+    const rusure = window.confirm(
+      "Depois de concluir um projeto, não tem como alterar mais, tem certeza?"
+    );
+
+    if (rusure) {
+      const response = await fetch(
+        "http://localhost:3000/projeto/done/" + params.id,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 404) {
+        return response;
+      }
+
+      if (!response.ok) {
+        console.log("deu erro");
+        console.log(response);
+        return redirect("/projects");
+      }
+
+      window.alert("Concluido com sucesso!");
+
+      return redirect("/projects");
+    }
+
+    return redirect("/projects");
+  }
+
   const response = await fetch("http://localhost:3000/projeto/" + params.id, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -34,19 +72,10 @@ export async function loader({ request, params }) {
   return resData;
 }
 
-export async function action({ request, params }) {
+export async function action({ params }) {
   const token = getAuthToken();
   if (!token) {
     return redirect("/");
-  }
-
-  const searchParams = new URL(request.url).searchParams;
-  const done = searchParams.get("done") || null;
-
-  if (done === "true") {
-    const rusure = window.confirm(
-      "Depois de concluir um projeto, não tem como alterar mais, tem certeza?"
-    );
   }
 
   const data = await request.formData();

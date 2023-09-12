@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
+import Tarefas from "../components/Tarefa/Tarefas";
 
 export default function TasksPage() {
-  return <Box sx={{ mt: "2rem" }}>Texte</Box>;
+  return <Tarefas />;
 }
