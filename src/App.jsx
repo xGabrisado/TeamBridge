@@ -32,6 +32,9 @@ import ProjectsEditingPage, {
   loader as editingProjectLoader,
 } from "./pages/ProjectsEditing";
 import { action as editingProjectAction } from "./pages/ProjectsEditing";
+import { loader as tasksLoader } from "./pages/Tasks";
+import TasksCreatePage from "./pages/TasksCreate";
+import { action as taskCreateAction } from "./pages/TasksCreate";
 
 const router = createBrowserRouter([
   {
@@ -104,7 +107,19 @@ const router = createBrowserRouter([
       },
       {
         path: "tasks",
-        element: <TasksPage />,
+        loader: tasksLoader,
+        id: "root-tasks",
+        children: [
+          {
+            index: true,
+            element: <TasksPage />,
+          },
+          {
+            path: "addTasks",
+            element: <TasksCreatePage />,
+            action: taskCreateAction,
+          },
+        ],
       },
       {
         path: "signup",

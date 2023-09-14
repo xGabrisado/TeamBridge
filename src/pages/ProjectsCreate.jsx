@@ -53,7 +53,7 @@ export async function action({ request }) {
 
   const resData = await response.json();
 
-  console.log(resData);
+  // console.log(resData);
 
   return redirect("/projects");
 }
