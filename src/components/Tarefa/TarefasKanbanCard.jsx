@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 export default function TarefasKanbanCard(props) {
   return (
     <Card variant="outlined" style={{ marginBottom: "8px" }}>
-      <CardActionArea>
+      <CardActionArea component={Link} to={`${props.id}`}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {props.name}
@@ -23,7 +23,7 @@ export default function TarefasKanbanCard(props) {
           ></Box> */}
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions sx={{ diplay: "flex", justifyContent: "space-evenly" }}>
         <Button
           variant="contained"
           component={Link}
@@ -40,12 +40,25 @@ export default function TarefasKanbanCard(props) {
             variant="contained"
             color="primary"
             component={Link}
-            to={`?status=${props.buttonTo2}`}
+            to={`${props.id}?status=${props.buttonTo2}`}
             size="small"
             style={{ marginTop: "8px" }}
             sx={{ fontSize: "10px", fontWeight: "bold" }}
           >
             {props.buttonTo2}
+          </Button>
+        )}
+        {props.buttonTo3 && (
+          <Button
+            variant="contained"
+            color="primary"
+            component={Link}
+            to={`${props.id}?isDone=true`}
+            size="small"
+            style={{ marginTop: "8px" }}
+            sx={{ fontSize: "10px", fontWeight: "bold" }}
+          >
+            {props.buttonTo3}
           </Button>
         )}
       </CardActions>

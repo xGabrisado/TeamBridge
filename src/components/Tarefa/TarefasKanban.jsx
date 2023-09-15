@@ -19,21 +19,19 @@ const columns = ["A Fazer", "Em Progresso", "Concluído"];
 const TarefasKanban = (props) => {
   const payload = useSelector((state) => state.token);
   const permission = payload.permission;
+  const isNotDone = props.loaderData.filter((projeto) => !projeto.isDone);
+  console.log(isNotDone);
 
   // console.log(props.loaderData);
-  const aFazer = props.loaderData.filter(
-    (task) => task.taskStatus === "A fazer"
-  );
-  const emProgresso = props.loaderData.filter(
+  const aFazer = isNotDone.filter((task) => task.taskStatus === "A fazer");
+  const emProgresso = isNotDone.filter(
     (task) => task.taskStatus === "Em progresso"
   );
-  const concluido = props.loaderData.filter(
-    (task) => task.taskStatus === "Concluido"
-  );
+  const concluido = isNotDone.filter((task) => task.taskStatus === "Concluido");
 
-  console.log(aFazer);
-  console.log(emProgresso);
-  console.log(concluido);
+  // console.log(aFazer);
+  // console.log(emProgresso);
+  // console.log(concluido);
 
   const isAuthorized = permission === "g" || permission === "a";
   return (
@@ -75,71 +73,31 @@ const TarefasKanban = (props) => {
           <Grid item xs={4}>
             <Paper elevation={3}>
               <Typography variant="h6">Em Progresso</Typography>
-              {emProgresso.length !== 0 && (
-                <Card variant="outlined" style={{ marginBottom: "8px" }}>
-                  <CardContent>
-                    <Box>Teste</Box>
-                    <Box
-                      component="div"
-                      sx={{ display: "flex", justifyContent: "space-evenly" }}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        style={{ marginTop: "8px" }}
-                        sx={{ fontSize: "10px", fontWeight: "bold" }}
-                      >
-                        A fazer
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        style={{ marginTop: "8px" }}
-                        sx={{ fontSize: "10px", fontWeight: "bold" }}
-                      >
-                        Concluir
-                      </Button>
-                    </Box>
-                  </CardContent>
-                </Card>
-              )}
+              {emProgresso.length !== 0 &&
+                emProgresso.map((task) => (
+                  <TarefasKanbanCard
+                    key={task.id}
+                    name={task.taskName}
+                    id={task.id}
+                    buttonTo1="A fazer"
+                    buttonTo2="Concluido"
+                  />
+                ))}
             </Paper>
           </Grid>
           <Grid item xs={4}>
             <Paper elevation={3}>
               <Typography variant="h6">Concluído</Typography>
-              {concluido.length !== 0 && (
-                <Card variant="outlined" style={{ marginBottom: "8px" }}>
-                  <CardContent>
-                    <Box>Teste</Box>
-                    <Box
-                      component="div"
-                      sx={{ display: "flex", justifyContent: "space-evenly" }}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        style={{ marginTop: "8px" }}
-                        sx={{ fontSize: "10px", fontWeight: "bold" }}
-                      >
-                        A fazer
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        style={{ marginTop: "8px" }}
-                        sx={{ fontSize: "10px", fontWeight: "bold" }}
-                      >
-                        Concluir
-                      </Button>
-                    </Box>
-                  </CardContent>
-                </Card>
-              )}
+              {concluido.length !== 0 &&
+                concluido.map((task) => (
+                  <TarefasKanbanCard
+                    key={task.id}
+                    name={task.taskName}
+                    id={task.id}
+                    buttonTo1="Em progresso"
+                    buttonTo3="Concluir"
+                  />
+                ))}
             </Paper>
           </Grid>
         </Grid>

@@ -28,10 +28,10 @@ export async function action({ request }) {
     projeto: Number(data.get("projetoId")),
   };
 
-  //   console.log("taskData");
-  //   console.log(taskData);
+  console.log("taskData");
+  console.log(taskData);
 
-  //   return "this";
+  // return "this";
 
   const response = await fetch("http://localhost:3000/tarefa", {
     method: "POST",
@@ -49,7 +49,7 @@ export async function action({ request }) {
   if (!response.ok) {
     console.log("deu erro");
     console.log(response);
-    return redirect("/projects");
+    return redirect("/tasks");
   }
 
   const resData = await response.json();
