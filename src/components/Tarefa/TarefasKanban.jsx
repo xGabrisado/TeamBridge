@@ -20,7 +20,7 @@ const TarefasKanban = (props) => {
   const payload = useSelector((state) => state.token);
   const permission = payload.permission;
   const isNotDone = props.loaderData.filter((projeto) => !projeto.isDone);
-  console.log(isNotDone);
+  // console.log(isNotDone);
 
   // console.log(props.loaderData);
   const aFazer = isNotDone.filter((task) => task.taskStatus === "A fazer");

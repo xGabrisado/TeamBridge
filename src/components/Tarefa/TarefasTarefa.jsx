@@ -1,23 +1,25 @@
 import { Box, Typography, Button } from "@mui/material";
-import List from "@mui/material/List";
-import { useState } from "react";
-import { Link, useLoaderData, useRouteLoaderData } from "react-router-dom";
+import {} from "react";
+import { Link, useRouteLoaderData } from "react-router-dom";
 // import ProjetosUsersList from "./ProjetosUsersList";
 // import ProjectAddUser from "./ProjetosAddUser";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, DateField } from "@mui/x-date-pickers";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { useSelector } from "react-redux";
 
 export default function TarefasTarefa() {
   const loaderData = useRouteLoaderData("taskLoader");
   const routeLoaderData = useRouteLoaderData("root-tasks");
+  const payload = useSelector((state) => state.token);
+  const permission = payload.permission;
 
   const usuariosArray = routeLoaderData.usersResData;
-  console.log("usuariosArray", usuariosArray);
+  // console.log("usuariosArray", usuariosArray);
 
   // console.log("loaderData.projectBeginning");
-  console.log(loaderData);
+  // console.log(loaderData);
 
   const createdAt = dayjs(`${loaderData.created_At}`);
   const taskDeadline = dayjs(`${loaderData.taskDeadline}`);
@@ -29,9 +31,10 @@ export default function TarefasTarefa() {
   // console.log(createdAt);
   // console.log("taskDeadline");
   // console.log(taskDeadline);
-  console.log("loaderData");
-  console.log(loaderData);
+  // console.log("loaderData")
+  // console.log(loaderData);;
 
+  const isAuthorized = permission === "g" || permission === "a";
   return (
     <Box>
       <Box
@@ -53,7 +56,7 @@ export default function TarefasTarefa() {
           </Typography>
         </Box>
         <Box component="div">
-          <Typography component="h1" variant="h5" color="error">
+          <Typography component="h1" variant="h5">
             Projeto: {loaderData.projeto.projectName}
           </Typography>
         </Box>
@@ -138,27 +141,42 @@ export default function TarefasTarefa() {
           component="div"
           sx={{ m: "10px 0", display: "flex", justifyContent: "space-between" }}
         >
+          {isAuthorized && (
+            <Button
+              variant="contained"
+              color="secondary"
+              component={Link}
+              to="editing"
+            >
+              Editar
+            </Button>
+          )}
           <Button
             variant="contained"
             color="secondary"
             component={Link}
-            to="editing"
-          >
-            Editar
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            to="editing/?done=true"
+            to="?isDone=true"
           >
             Concluir
           </Button>
         </Box>
-        <Box component="div">
+        <Box
+          component="div"
+          sx={{ m: "10px 0", display: "flex", justifyContent: "space-between" }}
+        >
           <Button variant="contained" component={Link} to="..">
             Voltar
           </Button>
+          {isAuthorized && (
+            <Button
+              variant="contained"
+              color="error"
+              component={Link}
+              to="?mode=delete"
+            >
+              Excluir
+            </Button>
+          )}
         </Box>
       </Box>
     </Box>

@@ -23,8 +23,8 @@ const Principal = () => {
     const userEmail = getTokenEmail();
     const userPermission = getTokenPermission();
 
-    console.log("userEmail useEffect");
-    console.log(userEmail);
+    // console.log("userEmail useEffect");
+    // console.log(userEmail);
 
     dispatch(
       tokenActions.addTokenPayload({

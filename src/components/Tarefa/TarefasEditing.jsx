@@ -9,20 +9,16 @@ import {
   InputLabel,
   FormControl,
 } from "@mui/material";
-import {
-  LocalizationProvider,
-  DatePicker,
-  DateField,
-} from "@mui/x-date-pickers";
+import { LocalizationProvider, DateField } from "@mui/x-date-pickers";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { Form, useLoaderData, useRouteLoaderData } from "react-router-dom";
+import { Form, useRouteLoaderData } from "react-router-dom";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Link } from "react-router-dom";
 
 export default function TarefasEditing() {
   const loaderData = useRouteLoaderData("taskLoader");
-  console.log(loaderData);
+  // console.log(loaderData);
   const taskDeadline = dayjs(`${loaderData.taskDeadline}`);
   // let projectBeginning = null;
   // if (loaderData.projectBeginning) {
@@ -37,10 +33,10 @@ export default function TarefasEditing() {
               <TextField
                 required
                 fullWidth
-                id="projectName"
-                label="Nome do Projeto"
-                name="projectName"
-                autoComplete="project-Name"
+                id="taskName"
+                label="Nome da Tarefa"
+                name="taskName"
+                autoComplete="task-Name"
                 autoFocus
                 color="secondary"
                 defaultValue={loaderData.taskName}
@@ -89,7 +85,7 @@ export default function TarefasEditing() {
                     format="DD/MM/YYYY"
                     color="secondary"
                     label="Prazo de entrega"
-                    name="projectDeadLine"
+                    name="taskDeadLine"
                     defaultValue={taskDeadline}
                   />
                 </DemoItem>

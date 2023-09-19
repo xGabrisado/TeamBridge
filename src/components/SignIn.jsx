@@ -56,8 +56,8 @@ export default function SignIn() {
     });
 
     if (response.status === 422 || response.status === 401) {
-      console.log(response.error);
-      console.log(response.message);
+      // console.log(response.error);
+      // console.log(response.message);
       setIsError({ message: "Email ou Senha inválidos" });
       return;
       // throw new Error({ message: "Email/Senha inválidos" });

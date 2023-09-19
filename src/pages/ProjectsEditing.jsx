@@ -72,7 +72,7 @@ export async function loader({ request, params }) {
   return resData;
 }
 
-export async function action({ params }) {
+export async function action({ request, params }) {
   const token = getAuthToken();
   if (!token) {
     return redirect("/");
@@ -87,10 +87,10 @@ export async function action({ params }) {
   let concatBeginningDate = null;
   if (splitBeginningDate) {
     concatBeginningDate = splitBeginningDate[2].concat(
-      `-${splitBeginningDate[0]}-${splitBeginningDate[1]}`
+      `-${splitBeginningDate[1]}-${splitBeginningDate[0]}`
     );
   }
-  const concatDate = splitDate[2].concat(`-${splitDate[0]}-${splitDate[1]}`);
+  const concatDate = splitDate[2].concat(`-${splitDate[1]}-${splitDate[0]}`);
   // console.log(concatDate);
   // console.log("projectBeginning");
   // console.log(concatBeginningDate);
@@ -101,11 +101,13 @@ export async function action({ params }) {
     projectBeginning: concatBeginningDate,
     projectDeadline: concatDate,
   };
-  console.log("JSON.stringify(projectData)");
-  console.log(JSON.stringify(projectData));
+  // console.log("JSON.stringify(projectData)");
+  // console.log(JSON.stringify(projectData));
 
-  console.log("params.id");
-  console.log(params.id);
+  // console.log(projectData);
+
+  // console.log("params.id");
+  // console.log(params.id);
 
   // return redirect("/projects");
 
@@ -130,7 +132,7 @@ export async function action({ params }) {
 
   const resData = await response.json();
 
-  console.log(resData);
+  // console.log(resData);
 
   return redirect("/projects");
 }
