@@ -142,7 +142,34 @@ export async function loader({ request, params }) {
     }
   }
 
-  const resData = await response.json();
-  // console.log(resData);
+  const resDataTask = await response.json();
+
+  const responseComment = await fetch(
+    "http://localhost:3000/tarefa/" + params.id + "/comentario",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (responseComment.status === "405") {
+    return responseComment;
+  }
+
+  if (!responseComment.ok) {
+    if (!responseComment.ok) {
+      throw json({ message: "Could not fetch data" }, { status: 500 });
+    }
+  }
+
+  const resDataComment = await responseComment.json();
+  console.log("resDataComment", resDataComment);
+
+  const resData = {
+    resDataTask,
+    resDataComment,
+  };
+
   return resData;
 }

@@ -1,4 +1,12 @@
-import { Box, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+} from "@mui/material";
 import {} from "react";
 import { Link, useRouteLoaderData } from "react-router-dom";
 // import ProjetosUsersList from "./ProjetosUsersList";
@@ -11,6 +19,8 @@ import { useSelector } from "react-redux";
 
 export default function TarefasTarefa() {
   const loaderData = useRouteLoaderData("taskLoader");
+  const loaderDataTask = loaderData.resDataTask;
+  const loaderDataComment = loaderData.resDataComment;
   const routeLoaderData = useRouteLoaderData("root-tasks");
   const payload = useSelector((state) => state.token);
   const permission = payload.permission;
@@ -21,8 +31,8 @@ export default function TarefasTarefa() {
   // console.log("loaderData.projectBeginning");
   // console.log(loaderData);
 
-  const createdAt = dayjs(`${loaderData.created_At}`);
-  const taskDeadline = dayjs(`${loaderData.taskDeadline}`);
+  const createdAt = dayjs(`${loaderDataTask.created_At}`);
+  const taskDeadline = dayjs(`${loaderDataTask.taskDeadline}`);
   // let projectBeginning = null;
   // // if (loaderData.projectBeginning) {
   // //   projectBeginning = dayjs(`${loaderData.projectBeginning}`);
@@ -52,22 +62,22 @@ export default function TarefasTarefa() {
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
           <Typography component="h1" variant="h2" color="secondary">
-            {loaderData.taskName}
+            {loaderDataTask.taskName}
           </Typography>
         </Box>
         <Box component="div">
           <Typography component="h1" variant="h5">
-            Projeto: {loaderData.projeto.projectName}
+            Projeto: {loaderDataTask.projeto.projectName}
           </Typography>
         </Box>
         <Box component="div">
           <Typography component="h1" variant="h6" color="error">
-            Prioridade: {loaderData.taskPriority}
+            Prioridade: {loaderDataTask.taskPriority}
           </Typography>
         </Box>
         <Box component="div">
           <Typography component="h1" variant="h6">
-            Status: {loaderData.taskStatus}
+            Status: {loaderDataTask.taskStatus}
           </Typography>
         </Box>
         {/* <Box component="div" sx={{ mt: "2rem" }}>
@@ -77,10 +87,34 @@ export default function TarefasTarefa() {
           </Typography>
         </Box> */}
 
+        <List
+          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+        >
+          <ListItem alignItems="flex-start">
+            <ListItemText
+              primary="Brunch this weekend?"
+              secondary={
+                <>
+                  <Typography
+                    sx={{ display: "inline" }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    Ali Connors
+                  </Typography>
+                  {" — I'll be in your neighborhood doing errands this…"}
+                </>
+              }
+            />
+          </ListItem>
+          <Divider variant="inset" component="li" />
+        </List>
+
         <Box component="div">
           <Typography variant="h6">
             Responsável:
-            {` ${loaderData.usuario[0].userName} ${loaderData.usuario[0].userLastName}`}
+            {` ${loaderDataTask.usuario[0].userName} ${loaderDataTask.usuario[0].userLastName}`}
           </Typography>
           {/* <nav aria-label="main mailbox folders">
             <List
