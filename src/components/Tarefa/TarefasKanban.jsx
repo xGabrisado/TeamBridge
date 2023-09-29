@@ -19,15 +19,21 @@ const columns = ["A Fazer", "Em Progresso", "Concluído"];
 const TarefasKanban = (props) => {
   const payload = useSelector((state) => state.token);
   const permission = payload.permission;
-  const isNotDone = props.loaderData.filter((projeto) => !projeto.isDone);
+  const isNotDone = props.loaderData.message
+    ? null
+    : props.loaderData.filter((projeto) => !projeto.isDone);
   // console.log(isNotDone);
 
   // console.log(props.loaderData);
-  const aFazer = isNotDone.filter((task) => task.taskStatus === "A fazer");
-  const emProgresso = isNotDone.filter(
-    (task) => task.taskStatus === "Em progresso"
-  );
-  const concluido = isNotDone.filter((task) => task.taskStatus === "Concluido");
+  const aFazer = isNotDone
+    ? isNotDone.filter((task) => task.taskStatus === "A fazer")
+    : null;
+  const emProgresso = isNotDone
+    ? isNotDone.filter((task) => task.taskStatus === "Em progresso")
+    : null;
+  const concluido = isNotDone
+    ? isNotDone.filter((task) => task.taskStatus === "Concluido")
+    : null;
 
   // console.log(aFazer);
   // console.log(emProgresso);
@@ -59,7 +65,8 @@ const TarefasKanban = (props) => {
           <Grid item xs={4}>
             <Paper elevation={3}>
               <Typography variant="h6">A Fazer</Typography>
-              {aFazer.length !== 0 &&
+              {aFazer &&
+                aFazer.length !== 0 &&
                 aFazer.map((task) => (
                   <TarefasKanbanCard
                     key={task.id}
@@ -73,7 +80,8 @@ const TarefasKanban = (props) => {
           <Grid item xs={4}>
             <Paper elevation={3}>
               <Typography variant="h6">Em Progresso</Typography>
-              {emProgresso.length !== 0 &&
+              {emProgresso &&
+                emProgresso.length !== 0 &&
                 emProgresso.map((task) => (
                   <TarefasKanbanCard
                     key={task.id}
@@ -88,7 +96,8 @@ const TarefasKanban = (props) => {
           <Grid item xs={4}>
             <Paper elevation={3}>
               <Typography variant="h6">Concluído</Typography>
-              {concluido.length !== 0 &&
+              {concluido &&
+                concluido.length !== 0 &&
                 concluido.map((task) => (
                   <TarefasKanbanCard
                     key={task.id}

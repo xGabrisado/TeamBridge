@@ -12,7 +12,10 @@ export default function Projetos() {
   // console.log(projectsData);
 
   const isAuthorized = permission === "g" || permission === "a";
-  const isNotDone = projectsData.filter((projeto) => !projeto.isDone);
+
+  const isNotDone = projectsData.message
+    ? null
+    : projectsData.filter((projeto) => !projeto.isDone);
   return (
     <Box>
       <Box

@@ -6,6 +6,7 @@ import {
   ListItem,
   ListItemText,
   Divider,
+  TextField,
 } from "@mui/material";
 import {} from "react";
 import { Link, useRouteLoaderData } from "react-router-dom";
@@ -16,11 +17,15 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, DateField } from "@mui/x-date-pickers";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { useSelector } from "react-redux";
+import ProjetosAddUser from "../Projeto/ProjetosAddUser";
+import TarefasAddComment from "./TarefasAddComment";
+import TarefasCommentsList from "./TarefasCommentsList";
 
 export default function TarefasTarefa() {
   const loaderData = useRouteLoaderData("taskLoader");
   const loaderDataTask = loaderData.resDataTask;
   const loaderDataComment = loaderData.resDataComment;
+  console.log(loaderDataComment);
   const routeLoaderData = useRouteLoaderData("root-tasks");
   const payload = useSelector((state) => state.token);
   const permission = payload.permission;
@@ -80,37 +85,6 @@ export default function TarefasTarefa() {
             Status: {loaderDataTask.taskStatus}
           </Typography>
         </Box>
-        {/* <Box component="div" sx={{ mt: "2rem" }}>
-          <ProjectAddUser projectId={loaderData.id} />
-          <Typography component="h1" variant="h6" color="black">
-            Usuários do projeto
-          </Typography>
-        </Box> */}
-
-        <List
-          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-        >
-          <ListItem alignItems="flex-start">
-            <ListItemText
-              primary="Brunch this weekend?"
-              secondary={
-                <>
-                  <Typography
-                    sx={{ display: "inline" }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    Ali Connors
-                  </Typography>
-                  {" — I'll be in your neighborhood doing errands this…"}
-                </>
-              }
-            />
-          </ListItem>
-          <Divider variant="inset" component="li" />
-        </List>
-
         <Box component="div">
           <Typography variant="h6">
             Responsável:
@@ -212,6 +186,26 @@ export default function TarefasTarefa() {
             </Button>
           )}
         </Box>
+        <TarefasAddComment />
+        <List
+          sx={{
+            width: "100%",
+            maxWidth: 1200,
+            height: "500px",
+            // maxHeight: 1200,
+            bgcolor: "background.paper",
+            overflow: "auto",
+          }}
+        >
+          {loaderDataComment.reverse().map((comentario) => (
+            <TarefasCommentsList
+              key={comentario.id}
+              usuario={comentario.usuario}
+              comentario={comentario.commentText}
+              dados={comentario}
+            />
+          ))}
+        </List>
       </Box>
     </Box>
   );

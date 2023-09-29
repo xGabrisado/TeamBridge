@@ -39,6 +39,8 @@ import TasksTaskPage from "./pages/TasksTask";
 import { loader as tasksTaskLoader } from "./pages/TasksTask";
 import TasksEditingPage from "./pages/TasksEditing";
 import { action as editingTaskAction } from "./pages/TasksEditing";
+import TasksAddCommentPage from "./pages/TasksAddComment";
+import { action as addCommentAction } from "./pages/TasksAddComment";
 
 const router = createBrowserRouter([
   {
@@ -136,6 +138,11 @@ const router = createBrowserRouter([
                 path: "editing",
                 element: <TasksEditingPage />,
                 action: editingTaskAction,
+              },
+              {
+                path: "comentarioCreate",
+                element: <TasksAddCommentPage />,
+                action: addCommentAction,
               },
             ],
           },

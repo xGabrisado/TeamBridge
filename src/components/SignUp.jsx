@@ -75,7 +75,7 @@ export default function SignUp() {
       setIsError((pastError) => {
         return {
           ...pastError,
-          confirmPassword: "As senhas devem ser iguais",
+          confirmPassword: null,
         };
       });
     }
@@ -130,7 +130,7 @@ export default function SignUp() {
       });
     }
 
-    if (emailError || passwordError || nameError) {
+    if (emailError || passwordError || nameError || confirmPasswordError) {
       return;
     }
 
@@ -164,7 +164,7 @@ export default function SignUp() {
     console.log(resData);
     setIsError({ message: "Cadastrado com sucesso" });
     setIsLoading(false);
-    navigate("/auth");
+    navigate("/");
   };
 
   return (
@@ -312,7 +312,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to="/auth" variant="body2">
+              <Link to="/" variant="body2">
                 Já possui uma conta? Faça o login
               </Link>
             </Grid>
