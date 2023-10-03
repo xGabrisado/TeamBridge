@@ -11,14 +11,17 @@ import { Link, useParams } from "react-router-dom";
 export default function TarefasCommentsList(props) {
   const params = useParams();
   const createdAt = new Date(props.dados.created_At);
+  const updatedAt = new Date(props.dados.updated_At);
   // const date = createdAt.getTime();
   const date = createdAt.toLocaleString("pt-BR");
+
+  const isEdited = createdAt.valueOf() !== updatedAt.valueOf();
 
   return (
     <>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary={date}
+          primary={`${date} ${isEdited ? "(Editado)" : ""}`}
           secondary={
             <>
               <Typography
@@ -36,7 +39,7 @@ export default function TarefasCommentsList(props) {
         />
         <Button
           component={Link}
-          to={`comentario/${params.id}/editing`}
+          to={`comentario/${props.dados.id}/editing`}
           variant="contained"
           color="secondary"
         >

@@ -41,6 +41,11 @@ import TasksEditingPage from "./pages/TasksEditing";
 import { action as editingTaskAction } from "./pages/TasksEditing";
 import TasksAddCommentPage from "./pages/TasksAddComment";
 import { action as addCommentAction } from "./pages/TasksAddComment";
+import TasksEditCommentPage from "./pages/TasksEditComment";
+import {
+  loader as editingCommentLoader,
+  action as editingCommentAction,
+} from "./pages/TasksEditComment";
 
 const router = createBrowserRouter([
   {
@@ -143,6 +148,12 @@ const router = createBrowserRouter([
                 path: "comentarioCreate",
                 element: <TasksAddCommentPage />,
                 action: addCommentAction,
+              },
+              {
+                path: "comentario/:commentId/editing",
+                element: <TasksEditCommentPage />,
+                loader: editingCommentLoader,
+                action: editingCommentAction,
               },
             ],
           },

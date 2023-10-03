@@ -25,13 +25,19 @@ export default function TarefasTarefa() {
   const loaderData = useRouteLoaderData("taskLoader");
   const loaderDataTask = loaderData.resDataTask;
   const loaderDataComment = loaderData.resDataComment;
-  console.log(loaderDataComment);
+  // console.log(loaderDataComment);
   const routeLoaderData = useRouteLoaderData("root-tasks");
   const payload = useSelector((state) => state.token);
   const permission = payload.permission;
 
   const usuariosArray = routeLoaderData.usersResData;
   // console.log("usuariosArray", usuariosArray);
+  // const commentCreatedAt = loaderDataComment.map()created_At;
+  // const commentUpdatedAt = loaderDataComment.updated_At;
+
+  // const isEdited = commentCreatedAt.valueOf() !== commentUpdatedAt.valueOf();
+
+  // console.log(isEdited);
 
   // console.log("loaderData.projectBeginning");
   // console.log(loaderData);

@@ -19,7 +19,8 @@ import { Link } from "react-router-dom";
 export default function TarefasEditing() {
   const loaderData = useRouteLoaderData("taskLoader");
   // console.log(loaderData);
-  const taskDeadline = dayjs(`${loaderData.taskDeadline}`);
+  const taskDeadline = dayjs(`${loaderData.resDataTask.taskDeadline}`);
+  // console.log(loaderData);
   // let projectBeginning = null;
   // if (loaderData.projectBeginning) {
   //   projectBeginning = dayjs(`${loaderData.projectBeginning}`);

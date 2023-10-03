@@ -164,7 +164,7 @@ export async function loader({ request, params }) {
   }
 
   const resDataComment = await responseComment.json();
-  console.log("resDataComment", resDataComment);
+  // console.log("resDataComment", resDataComment);
 
   const resData = {
     resDataTask,
