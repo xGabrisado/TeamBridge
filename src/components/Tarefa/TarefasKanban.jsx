@@ -45,14 +45,20 @@ const TarefasKanban = (props) => {
       <Typography variant="h4" gutterBottom>
         Tarefas
       </Typography>
-      {
-        //   projectsData.statusCode !== 405 &&
-        isAuthorized && (
-          <Button variant="contained" component={Link} to="addTasks">
-            Criar Tarefa <AddIcon />
-          </Button>
-        )
-      }
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        {
+          //   projectsData.statusCode !== 405 &&
+          isAuthorized && (
+            <Button variant="contained" component={Link} to="addTasks">
+              Criar Tarefa <AddIcon />
+            </Button>
+          )
+        }
+        <Button component={Link} to="done" variant="contained">
+          Tarefas Concluídas
+        </Button>
+      </Box>
+
       {!props.existsTasks && (
         <Typography variant="h6" sx={{ mt: "1rem" }}>
           {isAuthorized

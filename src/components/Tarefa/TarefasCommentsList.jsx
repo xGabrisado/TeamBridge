@@ -37,14 +37,16 @@ export default function TarefasCommentsList(props) {
             </>
           }
         />
-        <Button
-          component={Link}
-          to={`comentario/${props.dados.id}/editing`}
-          variant="contained"
-          color="secondary"
-        >
-          <EditIcon />
-        </Button>
+        {!props.taskData.isDone && (
+          <Button
+            component={Link}
+            to={`comentario/${props.dados.id}/editing`}
+            variant="contained"
+            color="secondary"
+          >
+            <EditIcon />
+          </Button>
+        )}
       </ListItem>
       <Divider variant="inset" component="li" />
     </>

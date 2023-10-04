@@ -155,7 +155,7 @@ export default function TarefasTarefa() {
           component="div"
           sx={{ m: "10px 0", display: "flex", justifyContent: "space-between" }}
         >
-          {isAuthorized && (
+          {isAuthorized && !loaderDataTask.isDone && (
             <Button
               variant="contained"
               color="secondary"
@@ -165,14 +165,16 @@ export default function TarefasTarefa() {
               Editar
             </Button>
           )}
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            to="?isDone=true"
-          >
-            Concluir
-          </Button>
+          {!loaderDataTask.isDone && (
+            <Button
+              variant="contained"
+              color="secondary"
+              component={Link}
+              to="?isDone=true"
+            >
+              Concluir
+            </Button>
+          )}
         </Box>
         <Box
           component="div"
@@ -181,7 +183,7 @@ export default function TarefasTarefa() {
           <Button variant="contained" component={Link} to="..">
             Voltar
           </Button>
-          {isAuthorized && (
+          {isAuthorized && !loaderDataTask.isDone && (
             <Button
               variant="contained"
               color="error"
@@ -192,7 +194,7 @@ export default function TarefasTarefa() {
             </Button>
           )}
         </Box>
-        <TarefasAddComment />
+        {!loaderDataTask.isDone && <TarefasAddComment />}
         <List
           sx={{
             width: "100%",
@@ -209,6 +211,7 @@ export default function TarefasTarefa() {
               usuario={comentario.usuario}
               comentario={comentario.commentText}
               dados={comentario}
+              taskData={loaderDataTask}
             />
           ))}
         </List>

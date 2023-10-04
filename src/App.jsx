@@ -46,6 +46,7 @@ import {
   loader as editingCommentLoader,
   action as editingCommentAction,
 } from "./pages/TasksEditComment";
+import TasksDonePage from "./pages/TasksDone";
 
 const router = createBrowserRouter([
   {
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <TasksPage />,
+          },
+          {
+            path: "done",
+            element: <TasksDonePage />,
           },
           {
             path: "addTasks",
