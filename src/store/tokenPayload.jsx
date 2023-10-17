@@ -18,6 +18,11 @@ const tokenSlice = createSlice({
       state.userEmail = action.payload.userEmail;
       state.permission = action.payload.userPermission;
     },
+    removeTokenPayload(state) {
+      state.id = '',
+      state.userEmail = '',
+      state.permission = ''
+    }
   },
 });
 

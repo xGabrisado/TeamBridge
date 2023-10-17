@@ -65,7 +65,8 @@ export default function TarefasTarefa() {
           display: "flex",
           flexDirection: "column",
           width: "100%",
-          height: "90vh",
+          height: 'auto',
+          pb: '40px'
         }}
       >
         <Box
@@ -199,7 +200,6 @@ export default function TarefasTarefa() {
           sx={{
             width: "100%",
             maxWidth: 1200,
-            height: "500px",
             // maxHeight: 1200,
             bgcolor: "background.paper",
             overflow: "auto",

@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
+import ListItems from "./listItems";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import { Grid } from "@mui/material";
@@ -84,7 +84,7 @@ export default function Dashboard(props) {
 
   return (
     <>
-      <Box sx={{ display: "flex", width: "100%" }}>
+      <Box sx={{ display: "flex", width: "100vw" }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
@@ -123,7 +123,7 @@ export default function Dashboard(props) {
         <Drawer
           variant="permanent"
           open={open}
-          sx={{ bgcolor: "primary.dark" }}
+          sx={{ bgcolor: "primary.dark", height: '100vh' }}
         >
           <Toolbar
             sx={{
@@ -142,10 +142,8 @@ export default function Dashboard(props) {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav" sx={{ bgcolor: "primary.dark" }}>
-            {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+          <List component="nav" sx={{ bgcolor: "primary.dark", height: '100%' }}>
+            <ListItems/>
           </List>
         </Drawer>
         <Box

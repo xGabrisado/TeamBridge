@@ -12,9 +12,14 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import { getAuthToken } from "../../utils/auth";
+import { Divider } from "@mui/material";
 
-export const mainListItems = (
-  <>
+const token = getAuthToken()
+
+export default function ListItems() {
+  return (
+    <>
     <Link to="/">
       <ListItemButton>
         <ListItemIcon>
@@ -61,23 +66,21 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Notificações" sx={{ color: "secondary" }} />
     </ListItemButton>
-  </>
-);
 
-export const secondaryListItems = (
-  <>
+    <Divider sx={{ my: 1 }} />
+
     <ListSubheader component="div" inset sx={{ bgcolor: "primary.dark" }}>
       Autentication
     </ListSubheader>
-    <Link to="/">
+    {!token && <Link to="/">
       <ListItemButton>
         <ListItemIcon>
           <LoginIcon color="secondary" />
         </ListItemIcon>
         <ListItemText primary="Login" sx={{ color: "secondary" }} />
       </ListItemButton>
-    </Link>
-    <Form action="/logout" method="post">
+    </Link>}
+    {token && <Form action="/logout" method="post">
       <button
         style={{
           backgroundColor: "inherit",
@@ -95,12 +98,7 @@ export const secondaryListItems = (
           <ListItemText primary="Logout" sx={{ color: "secondary" }} />
         </ListItemButton>
       </button>
-    </Form>
-    {/* <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="" />
-    </ListItemButton> */}
+    </Form>}
   </>
-);
+  )
+}
