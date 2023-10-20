@@ -40,7 +40,7 @@ export default function TarefasEditing() {
                 autoComplete="task-Name"
                 autoFocus
                 color="secondary"
-                defaultValue={loaderData.taskName}
+                defaultValue={loaderData.resDataTask.taskName}
               />
             </Grid>
             <Grid item xs={12} sm={12}>
@@ -51,17 +51,17 @@ export default function TarefasEditing() {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  defaultValue={"Nao urgente"}
+                  defaultValue={loaderData.resDataTask.taskPriority}
                   //   value={age}
                   label="taskPriority"
                   name="taskPriority"
                   //   onChange={handleChange}
                 >
-                  <MenuItem value={"Nao urgente"}>Não Urgente</MenuItem>
-                  <MenuItem value={"Pouca urgencia"}>Pouca Urgência</MenuItem>
-                  <MenuItem value={"Urgente"}>Urgente</MenuItem>
-                  <MenuItem value={"Muita urgencia"}>Muita urgência</MenuItem>
-                  <MenuItem value={"Emergencia"}>Emergência</MenuItem>
+                  <MenuItem value={"Baixa"}>Baixa</MenuItem>
+                  <MenuItem value={"Media"}>Média</MenuItem>
+                  <MenuItem value={"Alta"}>Alta</MenuItem>
+                  {/* <MenuItem value={"Muita urgencia"}>Muita urgência</MenuItem>
+                  <MenuItem value={"Emergencia"}>Emergência</MenuItem> */}
                 </Select>
               </FormControl>
             </Grid>

@@ -68,11 +68,11 @@ export default function TarefasCreate() {
                   name="taskPriority"
                   //   onChange={handleChange}
                 >
-                  <MenuItem value={"Nao urgente"}>Não Urgente</MenuItem>
-                  <MenuItem value={"Pouca urgencia"}>Pouca Urgência</MenuItem>
-                  <MenuItem value={"Urgente"}>Urgente</MenuItem>
-                  <MenuItem value={"Muita urgencia"}>Muita urgência</MenuItem>
-                  <MenuItem value={"Emergencia"}>Emergência</MenuItem>
+                  {/* <MenuItem value={"Nao urgente"}>Não Urgente</MenuItem> */}
+                  <MenuItem value={"Baixa"}>Baixa</MenuItem>
+                  <MenuItem value={"Média"}>Média</MenuItem>
+                  <MenuItem value={"Alta"}>Alta</MenuItem>
+                  {/* <MenuItem value={"Emergencia"}>Emergência</MenuItem> */}
                 </Select>
               </FormControl>
             </Grid>

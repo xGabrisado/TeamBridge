@@ -29,6 +29,7 @@ export default function TarefasTarefa() {
   const routeLoaderData = useRouteLoaderData("root-tasks");
   const payload = useSelector((state) => state.token);
   const permission = payload.permission;
+  // console.log("payload", payload);
 
   const usuariosArray = routeLoaderData.usersResData;
   // console.log("usuariosArray", usuariosArray);
@@ -65,8 +66,8 @@ export default function TarefasTarefa() {
           display: "flex",
           flexDirection: "column",
           width: "100%",
-          height: 'auto',
-          pb: '40px'
+          height: "auto",
+          pb: "40px",
         }}
       >
         <Box
