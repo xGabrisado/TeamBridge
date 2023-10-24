@@ -31,11 +31,22 @@ export default function TarefasCreate() {
   const usuariosArray = routeLoaderData.usersResData;
   const projetosArray = routeLoaderData.projectsResData;
   const isNotDone = projetosArray.filter((projeto) => !projeto.isDone);
+  const [projetoSelect, setProjetoSelect] = useState(isNotDone[0]);
+  console.log("projetoSelect", projetoSelect);
+  // console.log("isNotDone[0]", isNotDone[0].usuario);
   //   const [age, setAge] = useState("");
 
   //   const handleChange = (event) => {
   //     setAge(event.target.value);
   //   };
+
+  const projetoHandlerChanger = (event) => {
+    const project = isNotDone.find(
+      (project) => project.id === event.target.value
+    );
+    setProjetoSelect(project);
+    // console.log("project", project);
+  };
 
   return (
     <Box>
@@ -92,6 +103,26 @@ export default function TarefasCreate() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth color="secondary" required>
+                <InputLabel id="demo-simple-select-label">Projeto</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  //   value={age}
+                  label="projetoId"
+                  name="projetoId"
+                  defaultValue={isNotDone[0].id}
+                  onChange={projetoHandlerChanger}
+                >
+                  {isNotDone.map((project) => (
+                    <MenuItem key={project.id} value={project.id}>
+                      {`${project.projectName}`}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth color="secondary" required>
                 <InputLabel id="demo-simple-select-label">
                   Usuario Responsável
                 </InputLabel>
@@ -103,28 +134,9 @@ export default function TarefasCreate() {
                   name="id"
                   //   onChange={handleChange}
                 >
-                  {usuariosArray.map((user) => (
+                  {projetoSelect.usuario.map((user) => (
                     <MenuItem key={user.id} value={user.id}>
                       {`${user.userName} ${user.userLastName} (${user.userEmail})`}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth color="secondary" required>
-                <InputLabel id="demo-simple-select-label">Projeto</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  //   value={age}
-                  label="projetoId"
-                  name="projetoId"
-                  //   onChange={handleChange}
-                >
-                  {isNotDone.map((project) => (
-                    <MenuItem key={project.id} value={project.id}>
-                      {`${project.projectName}`}
                     </MenuItem>
                   ))}
                 </Select>

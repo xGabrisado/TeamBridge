@@ -17,6 +17,9 @@ export default function TarefasKanbanCard(props) {
           <Typography gutterBottom variant="h5" component="div">
             {props.name}
           </Typography>
+          <Typography gutterBottom variant="p" component="div">
+            {props.projeto}
+          </Typography>
           {/* <Box
             component="div"
             sx={{ display: "flex", justifyContent: "space-evenly" }}

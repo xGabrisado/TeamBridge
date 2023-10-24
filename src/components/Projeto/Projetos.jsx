@@ -17,7 +17,7 @@ export default function Projetos() {
     ? null
     : projectsData.filter((projeto) => !projeto.isDone);
   return (
-    <Box>
+    <Box sx={{ pb: "20px" }}>
       <Box
         component="div"
         sx={{
@@ -79,6 +79,7 @@ export default function Projetos() {
           ))}
         </Box>
       )}
+      {/* <div>teste</div> */}
     </Box>
   );
 }

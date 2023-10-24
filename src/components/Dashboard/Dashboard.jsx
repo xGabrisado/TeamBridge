@@ -18,14 +18,6 @@ import ListItems from "./listItems";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import { Grid } from "@mui/material";
-import {
-  getTokenEmail,
-  getTokenId,
-  getTokenPermission,
-} from "../../helpers/functions.helper";
-import { useDispatch } from "react-redux";
-import { tokenActions } from "../../store/tokenPayload";
-import { getAuthToken } from "../../utils/auth";
 
 const drawerWidth = 240;
 
@@ -123,7 +115,7 @@ export default function Dashboard(props) {
         <Drawer
           variant="permanent"
           open={open}
-          sx={{ bgcolor: "primary.dark", height: '100vh' }}
+          sx={{ bgcolor: "primary.dark", height: "100vh" }}
         >
           <Toolbar
             sx={{
@@ -142,8 +134,11 @@ export default function Dashboard(props) {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav" sx={{ bgcolor: "primary.dark", height: '100%' }}>
-            <ListItems/>
+          <List
+            component="nav"
+            sx={{ bgcolor: "primary.dark", height: "100%" }}
+          >
+            <ListItems />
           </List>
         </Drawer>
         <Box

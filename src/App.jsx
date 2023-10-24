@@ -8,7 +8,7 @@ import {
 } from "./pages/Profile";
 import ProfilePage from "./pages/Profile";
 import { tokenLoader } from "./utils/auth";
-import HomePage from "./pages/Home";
+import HomePage, { loader as homePageLoader } from "./pages/Home";
 import CompanyPage, {
   loader as companyLoader,
   action as creatingCompanyAction,
@@ -47,6 +47,7 @@ import {
   action as editingCommentAction,
 } from "./pages/TasksEditComment";
 import TasksDonePage from "./pages/TasksDone";
+import NotificationPage from "./pages/Notification";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+        // loader: homePageLoader,
       },
       {
         path: "profile",
@@ -163,6 +165,10 @@ const router = createBrowserRouter([
             ],
           },
         ],
+      },
+      {
+        path: "notificacoes",
+        element: <NotificationPage />,
       },
       {
         path: "signup",

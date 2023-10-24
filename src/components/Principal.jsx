@@ -1,7 +1,7 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useLoaderData } from "react-router-dom";
 import { getAuthToken, getTokenDuration } from "../utils/auth";
 import {
   getTokenEmail,
@@ -12,6 +12,12 @@ import { tokenActions } from "../store/tokenPayload";
 
 const Principal = () => {
   const dispatch = useDispatch();
+  // const loaderData = useLoaderData();
+
+  // const notifications = loaderData.filter(
+  //   (notification) => notification.isOpen === false
+  // );
+  // console.log("notifications.length", notifications.length);
 
   useEffect(() => {
     const token = getAuthToken();

@@ -35,6 +35,8 @@ const TarefasKanban = (props) => {
     ? isNotDone.filter((task) => task.taskStatus === "Concluido")
     : null;
 
+  console.log(aFazer);
+
   // console.log(aFazer);
   // console.log(emProgresso);
   // console.log(concluido);
@@ -78,6 +80,7 @@ const TarefasKanban = (props) => {
                     key={task.id}
                     name={task.taskName}
                     id={task.id}
+                    projeto={task.projeto.projectName}
                     buttonTo1="Em progresso"
                   />
                 ))}
@@ -93,6 +96,7 @@ const TarefasKanban = (props) => {
                     key={task.id}
                     name={task.taskName}
                     id={task.id}
+                    projeto={task.projeto.projectName}
                     buttonTo1="A fazer"
                     buttonTo2="Concluido"
                   />
@@ -109,6 +113,7 @@ const TarefasKanban = (props) => {
                     key={task.id}
                     name={task.taskName}
                     id={task.id}
+                    projeto={task.projeto.projectName}
                     buttonTo1="Em progresso"
                     buttonTo3="Concluir"
                   />
