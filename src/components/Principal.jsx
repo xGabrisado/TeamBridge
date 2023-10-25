@@ -151,7 +151,7 @@ const Principal = () => {
           >
             <Button
               component={Link}
-              to="/"
+              to="/notificacoes"
               color="primary"
               variant="contained"
               sx={{

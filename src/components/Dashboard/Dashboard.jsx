@@ -15,7 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ListItems from "./listItems";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import { Grid } from "@mui/material";
 
@@ -69,6 +69,15 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Dashboard(props) {
   const [open, setOpen] = React.useState(true);
+  const loaderData = useLoaderData()
+  // console.log('loaderData', loaderData);
+  let closedNotifications;
+  let length = 0
+  
+  if (loaderData) {
+    closedNotifications = loaderData.filter((notifications) => notifications.isOpen === false);
+    length = closedNotifications.length
+  }
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -105,8 +114,8 @@ export default function Dashboard(props) {
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={10} color="secondary">
+            <IconButton color="inherit" component={Link} to={`/notificacoes`}>
+              <Badge badgeContent={length} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>

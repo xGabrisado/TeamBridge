@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { getAuthToken, getTokenDuration } from "../utils/auth";
-import { redirect, useRouteLoaderData, useSubmit } from "react-router-dom";
+import { useLoaderData, useSubmit } from "react-router-dom";
 import SignIn from "../components/SignIn";
 import Principal from "../components/Principal";
 
 export default function HomePage() {
-  const token = useRouteLoaderData("root-router");
+  const token = useLoaderData();
   const submit = useSubmit();
 
   useEffect(() => {

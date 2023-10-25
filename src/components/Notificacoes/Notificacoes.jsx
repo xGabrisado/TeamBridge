@@ -9,9 +9,12 @@ import {
   Typography,
 } from "@mui/material";
 import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
-import { Link } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router-dom";
 
 export default function Notificacoes() {
+  const loaderData = useRouteLoaderData('root-router')
+  // const fetcher = useFetcher()  
+
   return (
     <Box
       sx={{
@@ -25,7 +28,9 @@ export default function Notificacoes() {
       <Typography variant="h4">Notificações</Typography>
       <nav aria-label="main mailbox folders">
         <List sx={{ p: "10px 5px" }}>
-          <ListItem
+          {loaderData.map((notificacao) => {
+            return (<ListItem
+            key={notificacao.id}
             disablePadding
             sx={{
               border: "solid 1px",
@@ -36,23 +41,26 @@ export default function Notificacoes() {
           >
             <ListItemButton
               component={Link}
-              to={`/tasks`}
+              to={`/tasks/${notificacao.tarefaId}`}
               sx={{ borderRadius: "5px" }}
             >
-              <ListItemText primary={"x pessoa enviou notificação"} />
+              <ListItemText primary={`Você tem novo comentário na tarefa ${notificacao.tarefaId}`} />
             </ListItemButton>
             {/* {props.disabledBin && ( */}
+
             <IconButton
               color="inherit"
               component={Link}
-              // to={`${props.id}?mode=delete`}
+              // type="submit"
+              to={`${notificacao.id}?mode=update`}
             >
               <Badge color="secondary">
                 <MarkChatReadIcon />
               </Badge>
             </IconButton>
             {/* )} */}
-          </ListItem>
+          </ListItem>)
+          })}
         </List>
       </nav>
     </Box>

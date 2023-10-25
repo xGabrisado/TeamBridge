@@ -200,7 +200,6 @@ export default function TarefasTarefa() {
         <List
           sx={{
             width: "100%",
-            maxWidth: 1200,
             // maxHeight: 1200,
             bgcolor: "background.paper",
             overflow: "auto",

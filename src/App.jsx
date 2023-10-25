@@ -48,18 +48,19 @@ import {
 } from "./pages/TasksEditComment";
 import TasksDonePage from "./pages/TasksDone";
 import NotificationPage from "./pages/Notification";
+import NotificationUpdatePage, {loader as notificationUpdateLoader} from "./pages/NotificationUpdate";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     id: "root-router",
-    loader: tokenLoader,
+    loader: homePageLoader ,
     children: [
       {
         index: true,
         element: <HomePage />,
-        // loader: homePageLoader,
+        loader: tokenLoader,
       },
       {
         path: "profile",
@@ -169,6 +170,13 @@ const router = createBrowserRouter([
       {
         path: "notificacoes",
         element: <NotificationPage />,
+        children: [
+          {
+            path: ':id',
+            element: <NotificationUpdatePage/>,
+            loader: notificationUpdateLoader,
+          }
+        ]
       },
       {
         path: "signup",
