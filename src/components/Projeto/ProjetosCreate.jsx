@@ -6,7 +6,7 @@ import {
 } from "@mui/x-date-pickers";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { Form } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import moment from "moment/moment";
 // import dayjs from "dayjs";
 
@@ -79,9 +79,24 @@ export default function ProjetosCreate() {
               type="submit"
               variant="contained"
               color="secondary"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3 }}
             >
               Criar
+            </Button>
+          </Box>
+          <Box
+            component="div"
+            sx={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <Button
+              component={Link}
+              type="button"
+              to=".."
+              variant="contained"
+              color="primary"
+              sx={{ mt: 1 }}
+            >
+              Voltar
             </Button>
           </Box>
         </Form>

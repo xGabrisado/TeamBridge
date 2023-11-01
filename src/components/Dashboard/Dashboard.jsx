@@ -69,14 +69,17 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Dashboard(props) {
   const [open, setOpen] = React.useState(true);
-  const loaderData = useLoaderData()
+  const loaderData = useLoaderData();
   // console.log('loaderData', loaderData);
   let closedNotifications;
-  let length = 0
-  
+  let length = 0;
+  console.log("loaderData", loaderData);
+
   if (loaderData) {
-    closedNotifications = loaderData.filter((notifications) => notifications.isOpen === false);
-    length = closedNotifications.length
+    closedNotifications = loaderData.filter(
+      (notifications) => notifications.isOpen === false
+    );
+    length = closedNotifications.length;
   }
 
   const toggleDrawer = () => {

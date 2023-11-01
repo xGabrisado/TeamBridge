@@ -47,6 +47,10 @@ export async function loader() {
 
     console.log("resData not:", resData);
 
+    if (!response.ok) {
+      return null;
+    }
+
     return resData;
   }
   return null;
