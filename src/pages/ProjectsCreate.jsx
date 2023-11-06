@@ -16,13 +16,15 @@ export async function action({ request }) {
   // console.log(data.get("projectDeadLine"));
   let splitDate = data.get("projectDeadLine").split("/");
   let splitBeginningDate = data.get("projectBeginning").split("/");
-  const concatDate = splitDate[2].concat(`-${splitDate[0]}-${splitDate[1]}`);
+  const concatDate = splitDate[2].concat(`-${splitDate[1]}-${splitDate[0]}`);
   const concatBeginningDate = splitBeginningDate[2].concat(
-    `-${splitBeginningDate[0]}-${splitBeginningDate[1]}`
+    `-${splitBeginningDate[1]}-${splitBeginningDate[0]}`
   );
   // console.log(concatDate);
-  console.log("projectBeginning");
-  console.log(concatBeginningDate);
+  // console.log("projectBeginning");
+  // console.log(concatBeginningDate);
+  // console.log("concatDate");
+  // console.log(concatDate);
 
   const projectData = {
     projectName: data.get("projectName"),
