@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import UserSignUpPage from "./pages/UserSignUp";
-import { action as logoutAction } from "./pages/Logout";
+import LogoutPage, { action as logoutAction } from "./pages/Logout";
 import {
   loader as profileLoader,
   action as editingProfileAction,
@@ -184,7 +184,9 @@ const router = createBrowserRouter([
       },
       {
         path: "logout",
+        element: <LogoutPage/>,
         action: logoutAction,
+        loader: logoutAction,
       },
     ],
   },

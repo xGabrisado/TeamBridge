@@ -63,7 +63,9 @@ export async function loader({ request }) {
 
     const resData = await response.json();
 
-    return redirect("/");
+    await window.alert('O sistema irá deslogar para maior segurança em relação as empresa, faça o login novamente para continuar')
+
+    return redirect("/logout");
   }
 
   const response = await fetch(
@@ -176,5 +178,7 @@ export async function action({ request }) {
   const resData = await response.json();
   // console.log(resData);
 
-  return redirect("/company");
+  await window.alert('O sistema irá deslogar para maior segurança em relação as empresa, faça o login novamente para continuar')
+
+  return redirect("/logout");
 }
