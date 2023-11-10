@@ -48,14 +48,17 @@ import {
 } from "./pages/TasksEditComment";
 import TasksDonePage from "./pages/TasksDone";
 import NotificationPage from "./pages/Notification";
-import NotificationUpdatePage, {loader as notificationUpdateLoader} from "./pages/NotificationUpdate";
+import NotificationUpdatePage, {
+  loader as notificationUpdateLoader,
+} from "./pages/NotificationUpdate";
+import ProjectsReportsPage from "./pages/ProjectsReports";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     id: "root-router",
-    loader: homePageLoader ,
+    loader: homePageLoader,
     children: [
       {
         index: true,
@@ -118,6 +121,11 @@ const router = createBrowserRouter([
             path: "removeUserFromProject",
             action: projectRemoveAction,
           },
+          {
+            path: "relatorio",
+            element: <ProjectsReportsPage />,
+            loader: projectsLoader,
+          },
         ],
       },
       {
@@ -172,11 +180,11 @@ const router = createBrowserRouter([
         element: <NotificationPage />,
         children: [
           {
-            path: ':id',
-            element: <NotificationUpdatePage/>,
+            path: ":id",
+            element: <NotificationUpdatePage />,
             loader: notificationUpdateLoader,
-          }
-        ]
+          },
+        ],
       },
       {
         path: "signup",
@@ -184,7 +192,7 @@ const router = createBrowserRouter([
       },
       {
         path: "logout",
-        element: <LogoutPage/>,
+        element: <LogoutPage />,
         action: logoutAction,
         loader: logoutAction,
       },

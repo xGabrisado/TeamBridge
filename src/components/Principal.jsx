@@ -1,4 +1,4 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Tooltip, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Form, Link, useLoaderData } from "react-router-dom";
@@ -86,6 +86,7 @@ const Principal = () => {
               // bgcolor: "blue",
             }}
           >
+            {/* <Tooltip title="teste"> */}
             <Button
               component={Link}
               to="/profile"
@@ -100,6 +101,7 @@ const Principal = () => {
             >
               Perfil
             </Button>
+            {/* </Tooltip> */}
             <Button
               component={Link}
               to="/company"

@@ -4,7 +4,7 @@ import { useRouteLoaderData } from "react-router-dom";
 
 export default function Tarefas() {
   const loaderData = useRouteLoaderData("root-tasks");
-  // console.log("loaderData nas tarefas", loaderData);
+  console.log("loaderData nas tarefas", loaderData);
 
   // console.log("loaderData");
   // console.log(loaderData);

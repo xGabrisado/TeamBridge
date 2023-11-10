@@ -30,9 +30,14 @@ export default function Projetos() {
         }}
       >
         {projectsData.statusCode !== 405 && isAuthorized && (
-          <Button variant="contained" component={Link} to="addProject">
-            Criar Projeto <AddIcon />
-          </Button>
+          <>
+            <Button variant="contained" component={Link} to="addProject">
+              Criar Projeto <AddIcon />
+            </Button>
+            <Button variant="contained" component={Link} to="relatorio">
+              Relatorio
+            </Button>
+          </>
         )}
       </Box>
       {projectsData.statusCode === 405 && (
