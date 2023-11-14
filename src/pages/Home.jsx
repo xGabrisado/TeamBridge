@@ -45,7 +45,7 @@ export async function loader() {
 
     const resData = await response.json();
 
-    console.log("resData not:", resData);
+    // console.log("resData not:", resData);
 
     if (!response.ok) {
       return null;

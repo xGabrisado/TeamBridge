@@ -73,7 +73,7 @@ export default function Dashboard(props) {
   // console.log('loaderData', loaderData);
   let closedNotifications;
   let length = 0;
-  console.log("loaderData", loaderData);
+  // console.log("loaderData", loaderData);
 
   if (loaderData) {
     closedNotifications = loaderData.filter(

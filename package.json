@@ -15,6 +15,7 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.4",
+    "@mui/x-data-grid": "^6.18.1",
     "@mui/x-date-pickers": "^6.12.1",
     "@reduxjs/toolkit": "^1.9.5",
     "dayjs": "^1.11.9",
@@ -27,6 +28,7 @@
     "react-html2pdf": "^1.0.1",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.14.2",
+    "react-to-pdf": "^1.0.1",
     "redux": "^4.2.1"
   },
   "devDependencies": {

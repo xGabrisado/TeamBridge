@@ -34,7 +34,12 @@ export default function Projetos() {
             <Button variant="contained" component={Link} to="addProject">
               Criar Projeto <AddIcon />
             </Button>
-            <Button variant="contained" component={Link} to="relatorio">
+            <Button
+              sx={{ ml: "1rem" }}
+              variant="contained"
+              component={Link}
+              to="relatorio"
+            >
               Relatorio
             </Button>
           </>
