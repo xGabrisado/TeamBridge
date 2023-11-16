@@ -21,19 +21,19 @@ const personalizacao = {
 const recuperarConteudoParaPDF = () => document.getElementById("conteudo");
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "projectName", headerName: "Nome", width: 130 },
+  { field: "id", headerName: "ID" },
+  { field: "projectName", headerName: "Nome", width: 150 },
   // { field: "createdAt", headerName: "Criação", width: 70 },
-  { field: "projectBeginning", headerName: "Inicio", width: 130 },
+  { field: "projectBeginning", headerName: "Inicio", width: 150 },
   {
     field: "projectDeadline",
     headerName: "Data de entrega",
-    width: 90,
+    width: 150,
   },
   {
     field: "isDone",
     headerName: "Concluído",
-    width: 90,
+    width: 140,
   },
   {
     field: "isLate",
@@ -77,9 +77,9 @@ export default function ProjetosRelatorios() {
     return {
       id: project.id,
       projectName: project.projectName,
-      projectBeginning: project.projectBeginning,
-      projectDeadline: project.projectDeadline,
-      isDone: project.isDone,
+      projectBeginning: new Date(project.projectBeginning).toLocaleDateString('pt-BR'),
+      projectDeadline: new Date(project.projectDeadline).toLocaleDateString('pt-BR'),
+      isDone: project.isDone ? 'Sim' : 'Não',
       isLate: isLate(project),
     };
   });
@@ -93,9 +93,10 @@ export default function ProjetosRelatorios() {
         >
           Gerar PDF
         </Button>
-        <Box id="conteudo">
+        <Box id="conteudo" sx={{mt: '1rem'}}>
           <div style={{ height: 400, width: "100%", background: "white" }}>
             <DataGrid
+              sx={{width: '100%', mr: '2rem'}}
               rows={rows}
               columns={columns}
               initialState={{
@@ -104,7 +105,7 @@ export default function ProjetosRelatorios() {
                 },
               }}
               pageSizeOptions={[5, 10]}
-              checkboxSelection
+              // checkboxSelection
             />
           </div>
         </Box>

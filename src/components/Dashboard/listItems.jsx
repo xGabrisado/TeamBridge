@@ -14,10 +14,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { getAuthToken } from "../../utils/auth";
 import { Divider } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const token = getAuthToken();
 
 export default function ListItems() {
+  const logOrNot = useSelector(state => state.token.permission)
+
   return (
     <>
       <Link to="/">
@@ -28,7 +31,7 @@ export default function ListItems() {
           <ListItemText primary="Home" sx={{ color: "secondary" }} />
         </ListItemButton>
       </Link>
-      <Link to="/profile">
+      {logOrNot !== '' && <><Link to="/profile">
         <ListItemButton>
           <ListItemIcon>
             <AccountBoxIcon color="secondary" />
@@ -66,13 +69,15 @@ export default function ListItems() {
         </ListItemIcon>
         <ListItemText primary="Notificações" sx={{ color: "secondary" }} />
       </ListItemButton>
+      </>}
 
       <Divider sx={{ my: 1 }} />
 
       <ListSubheader component="div" inset sx={{ bgcolor: "primary.dark" }}>
         Autentication
       </ListSubheader>
-      {!token && (
+      {/* {!token && ( */}
+      {logOrNot === '' && <>
         <Link to="/">
           <ListItemButton>
             <ListItemIcon>
@@ -81,8 +86,10 @@ export default function ListItems() {
             <ListItemText primary="Login" sx={{ color: "secondary" }} />
           </ListItemButton>
         </Link>
-      )}
-      {token && (
+      </>}
+      {/* )} */}
+      {/* {token && ( */}
+      {logOrNot !== '' &&
         <Form action="/logout" method="post">
           <button
             style={{
@@ -101,8 +108,8 @@ export default function ListItems() {
               <ListItemText primary="Logout" sx={{ color: "secondary" }} />
             </ListItemButton>
           </button>
-        </Form>
-      )}
+        </Form>}
+      {/* )} */}
     </>
   );
 }

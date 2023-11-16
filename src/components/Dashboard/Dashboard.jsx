@@ -18,6 +18,11 @@ import ListItems from "./listItems";
 import { Link, useLoaderData } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import { Grid } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { tokenActions } from "../../store/tokenPayload";
+import { useEffect } from "react";
+import { getAuthToken } from "../../utils/auth";
+import { getTokenEmail, getTokenId, getTokenPermission } from "../../helpers/functions.helper";
 
 const drawerWidth = 240;
 
@@ -70,6 +75,32 @@ const Drawer = styled(MuiDrawer, {
 export default function Dashboard(props) {
   const [open, setOpen] = React.useState(true);
   const loaderData = useLoaderData();
+  const dispatch = useDispatch()
+  const logOrNot = useSelector(state => state.token.permission)
+
+  useEffect(() => {
+    const token = getAuthToken();
+
+    if (!token) {
+      return;
+    }
+    const id = getTokenId();
+    const userEmail = getTokenEmail();
+    const userPermission = getTokenPermission();
+
+    // console.log("userEmail useEffect");
+    // console.log(userEmail);
+
+    dispatch(
+      tokenActions.addTokenPayload({
+        id,
+        userEmail,
+        userPermission,
+      })
+    );
+  }, [dispatch]);
+
+
   // console.log('loaderData', loaderData);
   let closedNotifications;
   let length = 0;
@@ -115,13 +146,13 @@ export default function Dashboard(props) {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              TeamBridge
             </Typography>
-            <IconButton color="inherit" component={Link} to={`/notificacoes`}>
+            {logOrNot !== '' && <IconButton color="inherit" component={Link} to={`/notificacoes`}>
               <Badge badgeContent={length} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton>}
           </Toolbar>
         </AppBar>
         <Drawer
