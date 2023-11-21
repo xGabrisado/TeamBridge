@@ -226,7 +226,7 @@ const Empresa = () => {
                 </Button>
               </Link>
             </Box>
-            {isAutorized && (
+            {/* {isAutorized && (
               <Box
                 component="div"
                 noValidate
@@ -248,7 +248,7 @@ const Empresa = () => {
                   Deletar a empresa
                 </Button>
               </Box>
-            )}
+            )} */}
           </>
         )}
       </Box>
