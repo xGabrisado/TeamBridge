@@ -8,9 +8,15 @@ import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, DateField } from "@mui/x-date-pickers";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { useSelector } from "react-redux";
 
 export default function ProjetosProjeto() {
   const loaderData = useLoaderData();
+  const payload = useSelector((state) => state.token);
+  const permission = payload.permission;
+  // console.log(projectsData);
+
+  const isAuthorized = permission === "g" || permission === "a";
 
   // console.log("loaderData.projectBeginning");
   // console.log(loaderData.projectBeginning);
@@ -56,7 +62,7 @@ export default function ProjetosProjeto() {
           </Typography>
         </Box>
         <Box component="div" sx={{ mt: "2rem" }}>
-          <ProjectAddUser projectId={loaderData.id} />
+          {isAuthorized && <ProjectAddUser projectId={loaderData.id} />}
           <Typography component="h1" variant="h6" color="black">
             Usuários do projeto
           </Typography>
@@ -68,7 +74,11 @@ export default function ProjetosProjeto() {
               sx={{ borderRadius: "5px", maxHeight: "250px", overflow: "auto" }}
             >
               {loaderData.usuario.map((usuario) => (
-                <ProjetosUsersList key={usuario.id} user={usuario} />
+                <ProjetosUsersList
+                  key={usuario.id}
+                  user={usuario}
+                  isAuthorized={isAuthorized}
+                />
               ))}
             </List>
           </nav>
@@ -118,27 +128,33 @@ export default function ProjetosProjeto() {
           </LocalizationProvider>
         </Box>
 
-        <Box
-          component="div"
-          sx={{ m: "10px 0", display: "flex", justifyContent: "space-between" }}
-        >
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            to="editing"
+        {isAuthorized && (
+          <Box
+            component="div"
+            sx={{
+              m: "10px 0",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
           >
-            Editar
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            to="editing/?done=true"
-          >
-            Concluir
-          </Button>
-        </Box>
+            <Button
+              variant="contained"
+              color="secondary"
+              component={Link}
+              to="editing"
+            >
+              Editar
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              component={Link}
+              to="editing/?done=true"
+            >
+              Concluir
+            </Button>
+          </Box>
+        )}
         <Box component="div">
           <Button variant="contained" component={Link} to="..">
             Voltar

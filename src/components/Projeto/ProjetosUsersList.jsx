@@ -11,7 +11,7 @@ import { useState } from "react";
 // import ListItemIcon from "@mui/material/ListItemIcon";
 // import InboxIcon from "@mui/icons-material/Inbox";
 
-export default function ProjetosUsersList({ user }) {
+export default function ProjetosUsersList({ user, isAuthorized }) {
   const params = useParams();
   const submit = useSubmit();
 
@@ -34,11 +34,13 @@ export default function ProjetosUsersList({ user }) {
   return (
     <ListItem disablePadding sx={{ bgcolor: "white", p: "0 20px" }}>
       <ListItemText primary={`${user.userName} ${user.userLastName}`} />
-      <IconButton color="inherit" onClick={deleteUserFromProjectHandler}>
-        <Badge color="secondary">
-          <DeleteIcon />
-        </Badge>
-      </IconButton>
+      {isAuthorized && (
+        <IconButton color="inherit" onClick={deleteUserFromProjectHandler}>
+          <Badge color="secondary">
+            <DeleteIcon />
+          </Badge>
+        </IconButton>
+      )}
     </ListItem>
   );
 }

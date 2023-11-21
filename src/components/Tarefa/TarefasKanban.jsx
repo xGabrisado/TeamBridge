@@ -19,20 +19,23 @@ const columns = ["A Fazer", "Em Progresso", "Concluído"];
 const TarefasKanban = (props) => {
   const payload = useSelector((state) => state.token);
   const permission = payload.permission;
+
   const isNotDone = props.loaderData.message
     ? null
     : props.loaderData.filter((projeto) => !projeto.isDone);
+
+  const hasProject = isNotDone.filter((task) => task.projeto !== null);
   // console.log(isNotDone);
 
   // console.log(props.loaderData);
-  const aFazer = isNotDone
-    ? isNotDone.filter((task) => task.taskStatus === "A fazer")
+  const aFazer = hasProject
+    ? hasProject.filter((task) => task.taskStatus === "A fazer")
     : null;
-  const emProgresso = isNotDone
-    ? isNotDone.filter((task) => task.taskStatus === "Em progresso")
+  const emProgresso = hasProject
+    ? hasProject.filter((task) => task.taskStatus === "Em progresso")
     : null;
-  const concluido = isNotDone
-    ? isNotDone.filter((task) => task.taskStatus === "Concluido")
+  const concluido = hasProject
+    ? hasProject.filter((task) => task.taskStatus === "Concluido")
     : null;
 
   console.log(aFazer);
