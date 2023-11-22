@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import generatePDF, { Margin } from "react-to-pdf";
 // import { DataGrid, GridValueGetterParams } from "@mui/x-data-grid";
 import { DataGrid } from "@mui/x-data-grid";
@@ -77,9 +77,13 @@ export default function ProjetosRelatorios() {
     return {
       id: project.id,
       projectName: project.projectName,
-      projectBeginning: new Date(project.projectBeginning).toLocaleDateString('pt-BR'),
-      projectDeadline: new Date(project.projectDeadline).toLocaleDateString('pt-BR'),
-      isDone: project.isDone ? 'Sim' : 'Não',
+      projectBeginning: new Date(project.projectBeginning).toLocaleDateString(
+        "pt-BR"
+      ),
+      projectDeadline: new Date(project.projectDeadline).toLocaleDateString(
+        "pt-BR"
+      ),
+      isDone: project.isDone ? "Sim" : "Não",
       isLate: isLate(project),
     };
   });
@@ -90,13 +94,17 @@ export default function ProjetosRelatorios() {
         <Button
           variant="contained"
           onClick={() => generatePDF(recuperarConteudoParaPDF, personalizacao)}
+          sx={{ mr: "2rem" }}
         >
           Gerar PDF
         </Button>
-        <Box id="conteudo" sx={{mt: '1rem'}}>
+        <Button variant="contained" component={Link} to=".." color="secondary">
+          Voltar
+        </Button>
+        <Box id="conteudo" sx={{ mt: "1rem" }}>
           <div style={{ height: 400, width: "100%", background: "white" }}>
             <DataGrid
-              sx={{width: '100%', mr: '2rem'}}
+              sx={{ width: "100%", mr: "2rem" }}
               rows={rows}
               columns={columns}
               initialState={{
